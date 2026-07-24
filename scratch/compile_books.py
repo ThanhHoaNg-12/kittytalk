@@ -86,7 +86,7 @@ def generate_unit_dialogues(gemini_key, pdf_text, book_title, unit_num, start_id
     genai.configure(api_key=gemini_key)
     
     # Initialize the model
-    model = genai.GenerativeModel('gemini-2.5-flash', generation_config={"response_mime_type": "application/json"})
+    model = genai.GenerativeModel('gemini-flash-latest', generation_config={"response_mime_type": "application/json"})
     
     prompt = f"""You are Kitty AI, a SaaS compiler engine.
 Read this textbook text, extract the key vocabulary/grammar concepts, and create 3 separate interactive conversations (Part 1, Part 2, Part 3) of 10 turns each (alternating AI and user) representing that Unit.
