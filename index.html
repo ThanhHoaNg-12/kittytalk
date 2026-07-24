@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="vi" class="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kitty - Learn to Think in English</title>
+  <meta name="description" content="Kitty - Nền tảng luyện phản xạ giao tiếp tiếng Anh bằng hội thoại. Biến mọi giáo trình PDF thành phản xạ thực tế.">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              DEFAULT: '#EC4899', /* Kitty Pink */
+              hover: '#DB2777',
+              light: '#FCE7F3',
+              dark: '#BE185D',
+            },
+            success: {
+              DEFAULT: '#10B981',
+              light: '#D1FAE5',
+              dark: '#065F46',
+            },
+            danger: {
+              DEFAULT: '#F43F5E', /* Cute red/rose */
+              light: '#FFE4E6',
+              dark: '#9F1239',
+            },
+            bgLight: '#FFF8F8', /* Sweet blush white */
+            bgDark: '#1E1115',
+            cardLight: '#FFFFFF',
+            cardDark: '#2D1F23'
+          },
+          borderRadius: {
+            '2xl': '16px',
+            '3xl': '24px',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- PDF.js library for Client-Side PDF parsing -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+</head>
+<body class="grid-bg bg-bgLight dark:bg-bgDark text-slate-800 dark:text-slate-100 min-h-screen transition-colors duration-200">
+
+  <!-- MAIN APP CONTAINER -->
+  <div id="app-root" class="flex min-h-screen w-full relative hidden">
+    
+    <!-- 1. SIDEBAR NAVIGATION -->
+    <aside id="app-sidebar" class="w-64 border-r border-rose-100 dark:border-rose-950 bg-white dark:bg-slate-900 flex flex-col fixed h-full z-30 transition-transform duration-200 translate-x-0 md:translate-x-0">
+      <!-- Sidebar Header / Branding -->
+      <div class="p-6 border-b border-rose-50/50 dark:border-rose-950 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-primary flex items-center justify-center text-white shadow-md shadow-primary/20">
+            <i data-lucide="cat" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h1 class="font-extrabold text-lg leading-tight tracking-tight text-slate-900 dark:text-white">Kitty</h1>
+            <span class="text-[10px] text-primary dark:text-pink-400 font-bold tracking-wider uppercase">Think in English</span>
+          </div>
+        </div>
+        <button id="sidebar-close-btn" class="md:hidden p-1 text-slate-400 hover:text-slate-600 dark:hover:text-white">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="flex-1 px-4 py-6 space-y-1 overflow-y-auto">
+        <button data-tab="home" class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-slate-600 dark:text-slate-400 hover:bg-rose-50/50 dark:hover:bg-rose-950/20 hover:text-primary dark:hover:text-pink-300 transition-all font-medium text-sm">
+          <i data-lucide="home" class="w-5 h-5"></i>
+          Trang chủ
+        </button>
+        <button data-tab="learn" class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-slate-600 dark:text-slate-400 hover:bg-rose-50/50 dark:hover:bg-rose-950/20 hover:text-primary dark:hover:text-pink-300 transition-all font-medium text-sm">
+          <i data-lucide="book-open" class="w-5 h-5"></i>
+          Học tập (Sách & PDF)
+          <span class="ml-auto text-[10px] bg-primary/10 text-primary px-2 py-0.5 rounded-full font-semibold">Parser</span>
+        </button>
+        <button data-tab="review" class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-slate-600 dark:text-slate-400 hover:bg-rose-50/50 dark:hover:bg-rose-950/20 hover:text-primary dark:hover:text-pink-300 transition-all font-medium text-sm">
+          <i data-lucide="message-square" class="w-5 h-5"></i>
+          Hộp Ôn tập
+          <span id="badge-review-count" class="ml-auto text-xs bg-primary text-white px-2 py-0.5 rounded-full font-semibold hidden">0</span>
+        </button>
+        <button data-tab="progress" class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-slate-600 dark:text-slate-400 hover:bg-rose-50/50 dark:hover:bg-rose-950/20 hover:text-primary dark:hover:text-pink-300 transition-all font-medium text-sm">
+          <i data-lucide="line-chart" class="w-5 h-5"></i>
+          Thành tích
+        </button>
+        <button data-tab="profile" class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-slate-600 dark:text-slate-400 hover:bg-rose-50/50 dark:hover:bg-rose-950/20 hover:text-primary dark:hover:text-pink-300 transition-all font-medium text-sm">
+          <i data-lucide="user" class="w-5 h-5"></i>
+          Hồ sơ
+        </button>
+        <button data-tab="settings" class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-slate-600 dark:text-slate-400 hover:bg-rose-50/50 dark:hover:bg-rose-950/20 hover:text-primary dark:hover:text-pink-300 transition-all font-medium text-sm">
+          <i data-lucide="settings" class="w-5 h-5"></i>
+          Cài đặt
+        </button>
+      </nav>
+
+      <!-- Sidebar Footer (Streak / Progress) -->
+      <div class="p-4 border-t border-rose-50 dark:border-rose-950/50 space-y-4">
+        <div class="flex items-center justify-between px-2">
+          <div class="flex items-center gap-2" title="Daily Streak">
+            <i data-lucide="flame" class="w-5 h-5 text-primary animate-flame"></i>
+            <span id="sb-streak-val" class="font-bold text-sm text-slate-700 dark:text-slate-350">0 ngày</span>
+          </div>
+          <div class="flex items-center gap-2" title="Level">
+            <i data-lucide="star" class="w-5 h-5 text-amber-400 fill-amber-400"></i>
+            <span id="sb-level-val" class="font-bold text-sm text-slate-700 dark:text-slate-350">LV 1</span>
+          </div>
+        </div>
+        
+        <div class="space-y-1">
+          <div class="flex justify-between text-[10px] font-bold text-slate-400 px-1">
+            <span>XP Hôm nay</span>
+            <span id="sb-xp-val">0 / 30 XP</span>
+          </div>
+          <div class="w-full h-2 bg-rose-50 dark:bg-rose-950/40 rounded-full overflow-hidden">
+            <div id="sb-xp-progress" class="h-full bg-gradient-to-r from-primary to-rose-500 transition-all duration-300" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between bg-rose-50/50 dark:bg-rose-950/20 p-2 rounded-xl">
+          <span class="text-xs font-semibold text-slate-450 dark:text-slate-400">Giao diện</span>
+          <button id="theme-toggle-btn" class="p-1.5 rounded-lg bg-white dark:bg-slate-800 hover:shadow-sm text-slate-650 dark:text-slate-300 border border-rose-50 dark:border-rose-900/50 transition-all">
+            <i data-lucide="sun" class="w-4 h-4 block dark:hidden"></i>
+            <i data-lucide="moon" class="w-4 h-4 hidden dark:block"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MOBILE HEADER BAR -->
+    <header class="md:hidden fixed top-0 left-0 right-0 h-16 border-b border-rose-100 dark:border-rose-950 bg-white dark:bg-slate-900 flex items-center justify-between px-6 z-20">
+      <button id="sidebar-open-btn" class="p-2 -ml-2 text-slate-650 dark:text-slate-300 hover:text-primary">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-lg bg-primary flex items-center justify-center text-white">
+          <i data-lucide="cat" class="w-4 h-4"></i>
+        </div>
+        <span class="font-extrabold text-base tracking-tight text-slate-900 dark:text-white">Kitty</span>
+      </div>
+      <div class="flex items-center gap-1.5 bg-primary/10 text-primary px-2.5 py-1 rounded-full text-xs font-bold">
+        <i data-lucide="flame" class="w-3.5 h-3.5 animate-flame"></i>
+        <span id="mobile-streak-val">0</span>
+      </div>
+    </header>
+
+    <!-- 2. MAIN VIEWPORT -->
+    <main id="main-viewport" class="flex-1 md:ml-64 px-6 py-8 md:px-10 md:py-10 mt-16 md:mt-0 max-w-5xl mx-auto w-full transition-all duration-300">
+      
+      <!-- TAB 1: HOME -->
+      <section id="view-home" class="view-panel space-y-8 animate-slideup">
+        <!-- Hero card -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-white dark:bg-slate-900 p-8 rounded-3xl border-thin shadow-sm relative overflow-hidden">
+          <div class="space-y-3 z-10">
+            <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-bold uppercase tracking-wider">Luyện phản xạ giao tiếp</span>
+            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white leading-tight">Chào <span id="home-greeting-username" class="text-primary font-bold">Học viên</span>,<br>Nghĩ bằng Tiếng Anh.</h2>
+            <p class="text-sm text-slate-500 dark:text-slate-400 max-w-md">Biến mọi câu chữ trong giáo trình thành phản xạ hội thoại thực tế của chính bạn thông qua đối thoại tương tác.</p>
+          </div>
+          
+          <div class="flex flex-col items-center gap-4 bg-rose-50/20 dark:bg-rose-950/20 p-6 rounded-2xl border border-rose-100/50 dark:border-rose-950/50 min-w-[200px]">
+            <div class="relative w-16 h-16 flex items-center justify-center">
+              <i data-lucide="flame" class="w-12 h-12 text-primary animate-flame"></i>
+            </div>
+            <div class="text-center">
+              <h4 id="home-streak-banner" class="font-extrabold text-base text-slate-900 dark:text-white">0 ngày liên tiếp</h4>
+              <p class="text-[11px] text-slate-400">Luyện chat để duy trì ngọn lửa!</p>
+            </div>
+            <button id="cta-quick-learn" class="w-full py-2.5 px-4 bg-primary hover:bg-primary-hover text-white text-xs font-bold rounded-xl transition-all shadow-md shadow-primary/10">
+              Học ngay
+            </button>
+          </div>
+        </div>
+
+        <!-- Dashboard widgets -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Progress XP goal circle -->
+          <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl border-thin shadow-sm flex flex-col justify-between">
+            <div class="space-y-1">
+              <div class="flex items-center gap-1.5 text-slate-400">
+                <i data-lucide="target" class="w-4 h-4 text-primary"></i>
+                <span class="text-[10px] font-bold uppercase tracking-wider">Tiến độ hôm nay</span>
+              </div>
+              <h3 class="text-base font-extrabold text-slate-900 dark:text-white">Mục tiêu hàng ngày</h3>
+            </div>
+            
+            <div class="py-6 flex justify-center">
+              <div class="relative w-28 h-28 flex items-center justify-center">
+                <svg class="w-full h-full transform -rotate-90">
+                  <circle cx="56" cy="56" r="48" stroke-width="8" stroke="currentColor" class="text-rose-50/40 dark:text-rose-950/20" fill="transparent"></circle>
+                  <circle id="goal-circle-bar" cx="56" cy="56" r="48" stroke-width="8" stroke="url(#pink-grad)" stroke-linecap="round" fill="transparent" stroke-dasharray="301.6" stroke-dashoffset="301.6" class="transition-all duration-500"></circle>
+                  <defs>
+                    <linearGradient id="pink-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#F43F5E"></stop>
+                      <stop offset="100%" stop-color="#EC4899"></stop>
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <div class="absolute flex flex-col items-center">
+                  <span id="goal-pct-text" class="font-extrabold text-lg text-slate-950 dark:text-white">0%</span>
+                  <span id="goal-xp-text" class="text-[10px] font-semibold text-slate-400">0/30 XP</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Smart review widget -->
+          <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl border-thin shadow-sm flex flex-col justify-between">
+            <div class="space-y-1">
+              <div class="flex items-center gap-1.5 text-primary">
+                <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+                <span class="text-[10px] font-bold uppercase tracking-wider">Spaced Repetition</span>
+              </div>
+              <h3 class="text-base font-extrabold text-slate-900 dark:text-white">Hàng chờ Ôn tập</h3>
+              <p class="text-xs text-slate-450 mt-1">Lặp lại ngắt quãng giúp khắc sâu các đoạn đối thoại bạn chưa nhuần nhuyễn.</p>
+            </div>
+            
+            <div class="py-4">
+              <div class="flex justify-between items-center text-xs p-3 bg-rose-50/20 dark:bg-rose-950/20 rounded-xl border border-rose-100/30 dark:border-rose-950/40">
+                <span class="font-medium text-slate-650 dark:text-slate-400">Hội thoại cần ôn</span>
+                <span id="home-due-review-badge" class="font-bold px-2 py-0.5 bg-primary/10 text-primary rounded-full">0 bài</span>
+              </div>
+            </div>
+            
+            <button id="home-start-review-btn" class="w-full py-2.5 bg-primary hover:bg-primary-hover text-white text-xs font-bold rounded-xl transition-all shadow-md shadow-primary/10">
+              Bắt đầu Ôn tập
+            </button>
+          </div>
+
+          <!-- Weak areas card -->
+          <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl border-thin shadow-sm flex flex-col justify-between">
+            <div class="space-y-1">
+              <div class="flex items-center gap-1.5 text-rose-500">
+                <i data-lucide="alert-triangle" class="w-4 h-4"></i>
+                <span class="text-[10px] font-bold uppercase tracking-wider">Cần cải thiện</span>
+              </div>
+              <h3 class="text-base font-extrabold text-slate-900 dark:text-white">Phần hội thoại bị lỗi</h3>
+            </div>
+            
+            <div class="py-4 space-y-2">
+              <button id="btn-goto-recently-wrong" class="w-full flex items-center justify-between text-xs p-2.5 hover:bg-rose-50/30 dark:hover:bg-rose-950/10 rounded-xl transition-all text-slate-700 dark:text-slate-350">
+                <span class="flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                  Lịch sử hội thoại lỗi
+                </span>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+              </button>
+              <button id="btn-goto-favs" class="w-full flex items-center justify-between text-xs p-2.5 hover:bg-rose-50/30 dark:hover:bg-rose-950/10 rounded-xl transition-all text-slate-700 dark:text-slate-350">
+                <span class="flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+                  Hội thoại yêu thích
+                </span>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+              </button>
+            </div>
+            <div class="text-[9px] text-center font-bold text-primary/45 uppercase tracking-widest">Kitty Platform v1.1</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 2: LEARN (SÁCH & PDF) -->
+      <section id="view-learn" class="view-panel space-y-6 hidden">
+        <div class="flex flex-col md:flex-row justify-between md:items-center gap-4">
+          <div>
+            <h2 class="text-2xl font-black text-slate-900 dark:text-white">Kitty Book Reader</h2>
+            <p class="text-xs text-slate-400 mt-0.5">Biến mọi trang sách trong bất kỳ giáo trình PDF nào thành bài tập phản xạ giao tiếp.</p>
+          </div>
+          
+          <div class="flex bg-rose-50 dark:bg-rose-950/30 p-1.5 rounded-2xl self-start">
+            <button id="learn-tab-situation-btn" class="px-4 py-2 text-xs font-bold rounded-xl transition-all shadow-sm bg-white dark:bg-slate-800 text-primary dark:text-white">
+              Tình huống giao tiếp ⭐
+            </button>
+            <button id="learn-tab-textbook-btn" class="px-4 py-2 text-xs font-bold rounded-xl transition-all text-slate-500 hover:text-primary">
+              Giáo trình & PDF của bạn 📚
+            </button>
+          </div>
+        </div>
+
+        <!-- 2A. SITUATIONS -->
+        <div id="learn-panel-situation" class="space-y-6 animate-scalein">
+          <h3 class="font-extrabold text-slate-800 dark:text-slate-200 text-base">Chủ đề giao tiếp thông dụng</h3>
+          <div id="topics-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+            <!-- Populated dynamically via JS -->
+          </div>
+        </div>
+
+        <!-- 2B. TEXTBOOK & PDF INGESTION -->
+        <div id="learn-panel-textbook" class="space-y-6 hidden animate-scalein">
+          
+          <!-- 1. PDF DRAG AND DROP BOX -->
+          <div id="kitty-pdf-ingester" class="bg-white dark:bg-slate-900 border-2 border-dashed border-rose-200 dark:border-rose-900/60 p-8 rounded-3xl shadow-sm text-center space-y-4 hover:border-primary transition-all relative">
+            <input type="file" id="pdf-file-input" accept="application/pdf" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
+            
+            <div class="w-12 h-12 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mx-auto">
+              <i data-lucide="file-text" class="w-6 h-6"></i>
+            </div>
+            
+            <div class="space-y-1">
+              <h4 class="font-extrabold text-slate-900 dark:text-white text-base">Thả tài liệu PDF tiếng Anh của bạn vào đây</h4>
+              <p class="text-xs text-slate-400 max-w-md mx-auto">Kéo thả file PDF giáo trình của bạn để trích xuất nội dung tạo bài đối thoại phản xạ tức thì.</p>
+            </div>
+            
+            <div class="flex items-center justify-center gap-4 text-xs font-bold z-20 relative pt-2 max-w-sm mx-auto">
+              <div class="flex items-center gap-1.5">
+                <span>Từ trang:</span>
+                <input type="number" id="pdf-start-page" value="1" min="1" class="w-16 px-2.5 py-1.5 border border-rose-100 rounded-lg text-center dark:bg-slate-800">
+              </div>
+              <div class="flex items-center gap-1.5">
+                <span>Đến trang:</span>
+                <input type="number" id="pdf-end-page" value="2" min="1" class="w-16 px-2.5 py-1.5 border border-rose-100 rounded-lg text-center dark:bg-slate-800">
+              </div>
+            </div>
+
+            <!-- PDF extraction loading status -->
+            <div id="pdf-loading-status" class="hidden p-3 bg-rose-50/50 dark:bg-rose-950/20 rounded-2xl max-w-xs mx-auto text-xs space-y-2">
+              <div class="flex items-center justify-center gap-2">
+                <div class="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
+                <span id="pdf-loading-text" class="font-medium text-slate-650">Đang đọc file PDF...</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. PRESET BOOK LISTS -->
+          <div class="space-y-4">
+            <h3 class="font-extrabold text-slate-800 dark:text-slate-200 text-base">Giáo trình IELTS & Cambridge có sẵn của bạn</h3>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              
+              <!-- Book 1 -->
+              <div class="p-5 bg-white dark:bg-slate-900 border-thin rounded-2xl flex items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                  <div class="w-12 h-14 bg-pink-400 text-white rounded-lg flex items-center justify-center font-extrabold text-sm">EVU</div>
+                  <div>
+                    <h5 class="font-extrabold text-xs text-slate-900 dark:text-white">Vocabulary in Use (Elementary)</h5>
+                    <span class="text-[9px] text-slate-400">1_English_Vocabulary_In_Use_Elementary...pdf</span>
+                  </div>
+                </div>
+                <button data-pdf-book="1_English_Vocabulary_In_Use_Elementary_Cambridge_-_Third_Edition OK.pdf" class="preset-book-btn px-3 py-2 bg-rose-50 hover:bg-primary hover:text-white dark:bg-rose-950/30 text-primary rounded-xl text-xs font-bold transition-all whitespace-nowrap">
+                  Học Sách này
+                </button>
+              </div>
+
+              <!-- Book 2 -->
+              <div class="p-5 bg-white dark:bg-slate-900 border-thin rounded-2xl flex items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                  <div class="w-12 h-14 bg-rose-450 text-white rounded-lg bg-pink-500 flex items-center justify-center font-extrabold text-sm">EVU</div>
+                  <div>
+                    <h5 class="font-extrabold text-xs text-slate-900 dark:text-white">Vocabulary in Use (Upper-Int)</h5>
+                    <span class="text-[9px] text-slate-400">3_English_Vocabulary_In_Use_Upper-Int...pdf</span>
+                  </div>
+                </div>
+                <button data-pdf-book="3_English_Vocabulary_In_Use_Upper-Intermediate_Cambridge_-_Fourth_Edition.pdf" class="preset-book-btn px-3 py-2 bg-rose-50 hover:bg-primary hover:text-white dark:bg-rose-950/30 text-primary rounded-xl text-xs font-bold transition-all whitespace-nowrap">
+                  Học Sách này
+                </button>
+              </div>
+
+              <!-- Book 3 -->
+              <div class="p-5 bg-white dark:bg-slate-900 border-thin rounded-2xl flex items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                  <div class="w-12 h-14 bg-pink-600 text-white rounded-lg flex items-center justify-center font-extrabold text-sm">EVU</div>
+                  <div>
+                    <h5 class="font-extrabold text-xs text-slate-900 dark:text-white">Vocabulary in Use (Advanced)</h5>
+                    <span class="text-[9px] text-slate-400">4_English_Vocabulary_In_Use_Advanced...pdf</span>
+                  </div>
+                </div>
+                <button data-pdf-book="4_English_Vocabulary_In_Use_Advanced_Cambridge_-_Third_Edition.pdf" class="preset-book-btn px-3 py-2 bg-rose-50 hover:bg-primary hover:text-white dark:bg-rose-950/30 text-primary rounded-xl text-xs font-bold transition-all whitespace-nowrap">
+                  Học Sách này
+                </button>
+              </div>
+
+              <!-- Book 4 -->
+              <div class="p-5 bg-white dark:bg-slate-900 border-thin rounded-2xl flex items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                  <div class="w-12 h-14 bg-pink-400 text-white rounded-lg flex items-center justify-center font-extrabold text-sm">EVU</div>
+                  <div>
+                    <h5 class="font-extrabold text-xs text-slate-900 dark:text-white">Vocabulary in Use (Pre-Int)</h5>
+                    <span class="text-[9px] text-slate-400">English Vocabulary in Use Pre Intermediate...pdf</span>
+                  </div>
+                </div>
+                <button data-pdf-book="English Vocabulary in Use Pre Intermediate and Intermediate.pdf" class="preset-book-btn px-3 py-2 bg-rose-50 hover:bg-primary hover:text-white dark:bg-rose-950/30 text-primary rounded-xl text-xs font-bold transition-all whitespace-nowrap">
+                  Học Sách này
+                </button>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- TAB 3: REVIEW -->
+      <section id="view-review" class="view-panel space-y-6 hidden">
+        <div>
+          <h2 class="text-2xl font-black text-slate-900 dark:text-white">Danh sách Ôn tập Đối thoại</h2>
+          <p class="text-xs text-slate-400 mt-0.5">Thực hành đối thoại ngắt quãng để kích hoạt vùng ngôn ngữ phản xạ tự nhiên.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="md:col-span-2 bg-white dark:bg-slate-900 rounded-3xl border-thin shadow-sm p-8 space-y-6 flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="w-12 h-12 bg-primary/10 text-primary rounded-2xl flex items-center justify-center">
+                <i data-lucide="refresh-cw" class="w-6 h-6"></i>
+              </div>
+              <h3 class="text-xl font-extrabold text-slate-900 dark:text-white">Bài ôn tập hôm nay</h3>
+              <p class="text-sm text-slate-500 dark:text-slate-400">Thuật toán SM-2 đã chọn ra các đoạn hội thoại có nhiều lỗi sai gần đây hoặc lâu chưa lặp lại để ôn luyện lại.</p>
+            </div>
+            
+            <div class="grid grid-cols-3 gap-4 pt-4 border-t border-rose-100 dark:border-rose-950/40">
+              <div class="text-center">
+                <span id="srs-total-val" class="block font-black text-2xl text-slate-800 dark:text-white">0</span>
+                <span class="text-[10px] text-slate-400 font-bold uppercase">Tổng hội thoại</span>
+              </div>
+              <div class="text-center">
+                <span id="srs-due-val" class="block font-black text-2xl text-primary">0</span>
+                <span class="text-[10px] text-slate-400 font-bold uppercase">Cần ôn ngay</span>
+              </div>
+              <div class="text-center">
+                <span id="srs-wrong-val" class="block font-black text-2xl text-rose-500">0</span>
+                <span class="text-[10px] text-slate-400 font-bold uppercase">Sai nhiều nhất</span>
+              </div>
+            </div>
+
+            <button id="srs-start-practice-btn" class="w-full py-4 bg-primary hover:bg-primary-hover text-white font-extrabold text-sm rounded-2xl transition-all shadow-md shadow-primary/10">
+              Bắt đầu Ôn tập Hội thoại
+            </button>
+          </div>
+
+          <div class="space-y-6">
+            <div class="bg-white dark:bg-slate-900 rounded-3xl border-thin shadow-sm p-6 space-y-4">
+              <div class="flex justify-between items-center">
+                <h4 class="font-extrabold text-sm text-slate-900 dark:text-white">Hội thoại lỗi</h4>
+                <span id="review-wrong-count-badge" class="px-2 py-0.5 bg-rose-100 text-rose-700 text-[10px] font-bold rounded-full">0 bài</span>
+              </div>
+              <p class="text-xs text-slate-400">Thực hành lại những bài đối thoại bạn có lượt dịch sai.</p>
+              <button id="review-wrong-practice-btn" class="w-full py-2.5 bg-rose-50 hover:bg-primary hover:text-white dark:bg-rose-950/30 text-primary text-xs font-bold rounded-xl transition-all">
+                Luyện bài lỗi
+              </button>
+            </div>
+
+            <div class="bg-white dark:bg-slate-900 rounded-3xl border-thin shadow-sm p-6 space-y-4">
+              <div class="flex justify-between items-center">
+                <h4 class="font-extrabold text-sm text-slate-900 dark:text-white">Đã lưu thích</h4>
+                <span id="review-fav-count-badge" class="px-2 py-0.5 bg-amber-100 text-amber-700 text-[10px] font-bold rounded-full">0 bài</span>
+              </div>
+              <p class="text-xs text-slate-400">Luyện tập lại các đoạn hội thoại quan trọng đã lưu ngôi sao.</p>
+              <button id="review-fav-practice-btn" class="w-full py-2.5 bg-rose-50 hover:bg-primary hover:text-white dark:bg-rose-950/30 text-primary text-xs font-bold rounded-xl transition-all">
+                Luyện bài đã lưu
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- LIST OF INCORRECT DIALOGUES -->
+        <div class="bg-white dark:bg-slate-900 rounded-3xl border-thin shadow-sm p-6 space-y-4">
+          <h3 class="font-extrabold text-slate-900 dark:text-white text-sm">Bảng chi tiết hội thoại cần rèn luyện thêm</h3>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs border-collapse">
+              <thead>
+                <tr class="border-b border-rose-50 dark:border-rose-950/40 text-slate-400 uppercase font-bold">
+                  <th class="py-3 pr-4">Tên cuộc hội thoại</th>
+                  <th class="py-3 px-4">Chủ đề</th>
+                  <th class="py-3 px-4 text-center">Độ khó</th>
+                  <th class="py-3 pl-4 text-right">Lựa chọn</th>
+                </tr>
+              </thead>
+              <tbody id="mistakes-table-body">
+                <!-- Rendered dynamically -->
+              </tbody>
+            </table>
+          </div>
+          <div id="mistakes-empty-state" class="text-center py-8 text-slate-400 text-xs hidden">
+            Hiện tại bạn đang hoàn thành tốt tất cả hội thoại, chưa có bài sai cần ôn tập!
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 4: PROGRESS (THÀNH TÍCH) -->
+      <section id="view-progress" class="view-panel space-y-6 hidden">
+        <div>
+          <h2 class="text-2xl font-black text-slate-900 dark:text-white">Báo cáo Phản xạ</h2>
+          <p class="text-xs text-slate-400 mt-0.5">Đo lường mức độ phản xạ hội thoại và độ chính xác của bạn.</p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div class="bg-white dark:bg-slate-900 p-5 rounded-2xl border-thin shadow-sm">
+            <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider block">Tổng lượt chat</span>
+            <span id="stat-total-practiced" class="text-2xl font-black text-slate-900 dark:text-white mt-1 block">0</span>
+          </div>
+          <div class="bg-white dark:bg-slate-900 p-5 rounded-2xl border-thin shadow-sm">
+            <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider block">Chính xác dịch</span>
+            <span id="stat-accuracy" class="text-2xl font-black text-primary mt-1 block">0%</span>
+          </div>
+          <div class="bg-white dark:bg-slate-900 p-5 rounded-2xl border-thin shadow-sm">
+            <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider block">Tốc độ dịch ý</span>
+            <span id="stat-speed" class="text-2xl font-black text-emerald-500 mt-1 block">0s</span>
+          </div>
+          <div class="bg-white dark:bg-slate-900 p-5 rounded-2xl border-thin shadow-sm">
+            <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider block">Streak chuỗi</span>
+            <span id="stat-max-streak" class="text-2xl font-black text-rose-500 mt-1 block">0 ngày</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl border-thin shadow-sm md:col-span-2 space-y-4">
+            <h3 class="font-extrabold text-sm text-slate-900 dark:text-white">Lịch sử tích luỹ XP (7 ngày qua)</h3>
+            <div class="h-48 flex items-end justify-between gap-2 pt-6 px-4">
+              <div class="flex-1 flex flex-col items-center gap-2 h-full justify-end">
+                <div id="chart-bar-0" class="w-full bg-rose-50 dark:bg-rose-950/20 rounded-t-lg transition-all duration-500" style="height: 0%"></div>
+                <span id="chart-day-0" class="text-[9px] text-slate-400 font-bold uppercase">Mon</span>
+              </div>
+              <div class="flex-1 flex flex-col items-center gap-2 h-full justify-end">
+                <div id="chart-bar-1" class="w-full bg-rose-50 dark:bg-rose-950/20 rounded-t-lg transition-all duration-500" style="height: 0%"></div>
+                <span id="chart-day-1" class="text-[9px] text-slate-400 font-bold uppercase">Tue</span>
+              </div>
+              <div class="flex-1 flex flex-col items-center gap-2 h-full justify-end">
+                <div id="chart-bar-2" class="w-full bg-rose-50 dark:bg-rose-950/20 rounded-t-lg transition-all duration-500" style="height: 0%"></div>
+                <span id="chart-day-2" class="text-[9px] text-slate-400 font-bold uppercase">Wed</span>
+              </div>
+              <div class="flex-1 flex flex-col items-center gap-2 h-full justify-end">
+                <div id="chart-bar-3" class="w-full bg-rose-50 dark:bg-rose-950/20 rounded-t-lg transition-all duration-500" style="height: 0%"></div>
+                <span id="chart-day-3" class="text-[9px] text-slate-400 font-bold uppercase">Thu</span>
+              </div>
+              <div class="flex-1 flex flex-col items-center gap-2 h-full justify-end">
+                <div id="chart-bar-4" class="w-full bg-rose-50 dark:bg-rose-950/20 rounded-t-lg transition-all duration-500" style="height: 0%"></div>
+                <span id="chart-day-4" class="text-[9px] text-slate-400 font-bold uppercase">Fri</span>
+              </div>
+              <div class="flex-1 flex flex-col items-center gap-2 h-full justify-end">
+                <div id="chart-bar-5" class="w-full bg-rose-50 dark:bg-rose-950/20 rounded-t-lg transition-all duration-500" style="height: 0%"></div>
+                <span id="chart-day-5" class="text-[9px] text-slate-400 font-bold uppercase">Sat</span>
+              </div>
+              <div class="flex-1 flex flex-col items-center gap-2 h-full justify-end">
+                <div id="chart-bar-6" class="w-full bg-rose-50 dark:bg-rose-950/20 rounded-t-lg transition-all duration-500" style="height: 0%"></div>
+                <span id="chart-day-6" class="text-[9px] text-slate-400 font-bold uppercase">Sun</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl border-thin shadow-sm flex flex-col justify-between animate-float">
+            <div class="space-y-1">
+              <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider block">Kitty Level</span>
+              <h3 class="text-base font-extrabold text-slate-900 dark:text-white">Xếp hạng phản xạ</h3>
+            </div>
+            
+            <div class="text-center py-6">
+              <div class="inline-flex w-16 h-16 bg-primary/10 text-primary rounded-3xl items-center justify-center font-black text-2xl shadow-sm border border-primary/20">
+                <span id="progress-level-badge">1</span>
+              </div>
+              <h4 id="progress-level-title" class="font-extrabold text-lg text-slate-950 dark:text-white mt-3">Học viên Kitty</h4>
+              <p class="text-xs text-slate-400 mt-1">Chat nhiều hội thoại để tăng cấp độ nhé.</p>
+            </div>
+
+            <div class="space-y-1">
+              <div class="flex justify-between text-xs font-semibold text-slate-400">
+                <span>XP Tích luỹ</span>
+                <span id="progress-xp-val">0 XP</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl border-thin shadow-sm space-y-4">
+          <h3 class="font-extrabold text-sm text-slate-900 dark:text-white">Huy hiệu phản xạ</h3>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div id="badge-welcome" class="p-4 border border-rose-50 dark:border-rose-950 rounded-2xl flex flex-col items-center text-center opacity-55 transition-all">
+              <div class="w-10 h-10 bg-primary/10 text-primary rounded-xl flex items-center justify-center font-bold text-lg mb-2">👋</div>
+              <span class="font-bold text-xs">Chào sân</span>
+              <span class="text-[10px] text-slate-400 mt-1">Dịch chuẩn câu thoại đầu tiên</span>
+            </div>
+            <div id="badge-streak3" class="p-4 border border-rose-50 dark:border-rose-950 rounded-2xl flex flex-col items-center text-center opacity-55 transition-all">
+              <div class="w-10 h-10 bg-rose-500/10 text-rose-500 rounded-xl flex items-center justify-center font-bold text-lg mb-2">🔥</div>
+              <span class="font-bold text-xs">Giữ lửa 3 ngày</span>
+              <span class="text-[10px] text-slate-400 mt-1">Chat liên tiếp 3 ngày</span>
+            </div>
+            <div id="badge-perfect10" class="p-4 border border-rose-50 dark:border-rose-950 rounded-2xl flex flex-col items-center text-center opacity-55 transition-all">
+              <div class="w-10 h-10 bg-emerald-500/10 text-emerald-500 rounded-xl flex items-center justify-center font-bold text-lg mb-2">🎯</div>
+              <span class="font-bold text-xs">Phản xạ chuẩn</span>
+              <span class="text-[10px] text-slate-400 mt-1">Đúng 10 lượt thoại liên tục</span>
+            </div>
+            <div id="badge-polyglot" class="p-4 border border-rose-50 dark:border-rose-950 rounded-2xl flex flex-col items-center text-center opacity-55 transition-all">
+              <div class="w-10 h-10 bg-indigo-500/10 text-indigo-500 rounded-xl flex items-center justify-center font-bold text-lg mb-2">💡</div>
+              <span class="font-bold text-xs">Đa lĩnh vực</span>
+              <span class="text-[10px] text-slate-400 mt-1">Thực hành trên 3 chủ đề</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 5: PROFILE -->
+      <section id="view-profile" class="view-panel space-y-6 hidden">
+        <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl border-thin shadow-sm flex flex-col items-center text-center space-y-4">
+          <div class="w-20 h-20 bg-gradient-to-tr from-primary to-rose-400 rounded-3xl flex items-center justify-center text-white text-3xl font-bold shadow-md shadow-primary/20">
+            KT
+          </div>
+          <div>
+            <h3 class="profile-user-name text-xl font-extrabold text-slate-900 dark:text-white">Người dùng Kitty</h3>
+            <span class="text-xs px-2.5 py-1 bg-rose-50 dark:bg-rose-950 text-primary rounded-full font-bold mt-1 inline-block">Học viên Phản xạ</span>
+          </div>
+          
+          <div class="w-full max-w-sm grid grid-cols-2 gap-4 pt-6 border-t border-rose-100 dark:border-rose-950/40">
+            <div class="text-left p-4 bg-rose-50/20 dark:bg-rose-950/20 rounded-2xl">
+              <span class="text-[10px] font-bold text-slate-455 uppercase">XP Tích luỹ</span>
+              <span id="prof-xp" class="block text-lg font-black text-slate-800 dark:text-white mt-1">0 XP</span>
+            </div>
+            <div class="text-left p-4 bg-rose-50/20 dark:bg-rose-950/20 rounded-2xl">
+              <span class="text-[10px] font-bold text-slate-455 uppercase">Cấp độ</span>
+              <span id="prof-level" class="block text-lg font-black text-slate-800 dark:text-white mt-1">Cấp độ 1</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl border-thin shadow-sm space-y-4">
+          <h4 class="font-extrabold text-slate-900 dark:text-white text-sm">Quản lý tài khoản và dữ liệu</h4>
+          <p class="text-xs text-slate-400">Đăng xuất tài khoản hoặc làm mới dữ liệu của hệ thống.</p>
+          <div class="flex flex-wrap gap-3">
+            <button id="auth-logout-btn" class="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold rounded-xl transition-all border border-slate-200">
+              Đăng xuất tài khoản
+            </button>
+            <button id="reset-db-btn" class="px-4 py-2.5 bg-danger text-white text-xs font-bold rounded-xl hover:bg-danger/90 transition-all shadow-md shadow-danger/10">
+              Xoá toàn bộ dữ liệu & Reset MVP
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 6: SETTINGS -->
+      <section id="view-settings" class="view-panel space-y-6 hidden">
+        <div>
+          <h2 class="text-2xl font-black text-slate-900 dark:text-white">Cấu hình hệ thống</h2>
+          <p class="text-xs text-slate-400 mt-0.5">Tùy biến các tham số API và cài đặt TTS của ứng dụng Kitty.</p>
+        </div>
+
+        <div class="bg-white dark:bg-slate-900 rounded-3xl border-thin shadow-sm p-6 space-y-6">
+          <div class="space-y-2">
+            <h3 class="font-extrabold text-sm text-slate-900 dark:text-white">Cấu hình Google Gemini API Key</h3>
+            <p class="text-xs text-slate-450">API Key của bạn được lưu an toàn trực tiếp ở LocalStorage dưới máy. Nhập key để mở khoá tính năng sửa lỗi tiếng Anh chi tiết và trích xuất sách PDF bằng AI.</p>
+            <div class="flex gap-3 max-w-xl">
+              <input type="password" id="settings-api-key" placeholder="AIzaSy..." class="flex-1 px-4 py-3 rounded-2xl border border-rose-100 dark:border-rose-900/60 bg-transparent text-sm focus:border-primary focus:outline-none transition-all">
+              <button id="settings-save-key-btn" class="px-5 py-3 bg-primary hover:bg-primary-hover text-white text-xs font-bold rounded-2xl transition-all">
+                Lưu cài đặt
+              </button>
+            </div>
+            <p id="api-status-msg" class="text-[11px] text-slate-400 italic">Hiện tại hệ thống đang sử dụng kiểm tra offline tích hợp sẵn.</p>
+          </div>
+
+          <hr class="border-rose-50 dark:border-rose-950/40">
+
+          <div class="space-y-4 max-w-xl">
+            <h3 class="font-extrabold text-sm text-slate-900 dark:text-white">Phát âm giọng đọc (Speech)</h3>
+            <div class="flex items-center justify-between">
+              <div>
+                <h4 class="text-xs font-bold text-slate-700 dark:text-slate-350">Tự động nói khi AI phản hồi</h4>
+                <p class="text-[10px] text-slate-400">Nghe giọng nói tiếng Anh ngay sau khi hoàn thành.</p>
+              </div>
+              <input type="checkbox" id="settings-auto-pronounce" class="w-4 h-4 rounded text-primary focus:ring-primary border-rose-200">
+            </div>
+
+            <div class="space-y-1">
+              <div class="flex justify-between text-xs font-semibold text-slate-500">
+                <span>Tốc độ đọc giọng nói</span>
+                <span id="settings-rate-val">0.9x</span>
+              </div>
+              <input type="range" id="settings-speech-rate" min="0.5" max="1.5" step="0.1" value="0.9" class="w-full accent-primary">
+            </div>
+
+            <div class="space-y-1">
+              <label class="text-xs font-bold text-slate-700 dark:text-slate-350 block">Giọng đọc tiếng Anh mặc định</label>
+              <select id="settings-voice-select" class="w-full px-4 py-2.5 rounded-xl border border-rose-100 dark:border-rose-950/40 bg-transparent text-xs focus:outline-none focus:border-primary">
+                <option value="en-US">English (US)</option>
+              </select>
+            </div>
+          </div>
+
+          <hr class="border-rose-50 dark:border-rose-950/40">
+
+          <div class="space-y-2 max-w-xl">
+            <h3 class="font-extrabold text-sm text-slate-900 dark:text-white">Mục tiêu XP hằng ngày</h3>
+            <select id="settings-daily-goal" class="w-full px-4 py-2.5 rounded-xl border border-rose-100 dark:border-rose-950/40 bg-transparent text-xs focus:outline-none focus:border-primary">
+              <option value="10">Dễ (10 XP - 1 câu thoại)</option>
+              <option value="30">Trung bình (30 XP - 3 câu thoại)</option>
+              <option value="50">Khó (50 XP - 5 câu thoại)</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- 3. INTERACTIVE CHAT PRACTICE SCREEN OVERLAY -->
+    <div id="practice-viewport" class="fixed inset-0 bg-rose-50/10 dark:bg-bgDark z-50 flex flex-col md:flex-row hidden transition-all duration-300">
+      
+      <!-- LEFT CHAT CONTAINER: Chat interface -->
+      <div class="flex-1 flex flex-col justify-between bg-white dark:bg-slate-900 border-r border-rose-50 dark:border-rose-950/40">
+        
+        <!-- Chat Header -->
+        <header class="h-16 border-b border-rose-100 dark:border-rose-950/40 bg-white dark:bg-slate-900 flex items-center justify-between px-6 flex-shrink-0">
+          <div class="flex items-center gap-3">
+            <button id="practice-exit-btn" class="p-1.5 rounded-xl hover:bg-rose-50 dark:hover:bg-rose-950/30 text-slate-500">
+              <i data-lucide="arrow-left" class="w-5 h-5 text-primary"></i>
+            </button>
+            <div>
+              <span id="practice-title" class="font-bold text-sm text-slate-800 dark:text-white">Làm quen xã giao</span>
+              <span id="practice-difficulty" class="ml-2 px-2 py-0.5 rounded text-[8px] font-black tracking-wider uppercase bg-rose-100 text-primary">EASY</span>
+            </div>
+          </div>
+          
+          <div class="flex-1 max-w-[150px] sm:max-w-xs mx-4 flex items-center gap-2">
+            <div class="flex-1 h-2 bg-rose-50 dark:bg-rose-950/30 rounded-full overflow-hidden">
+              <div id="practice-progress-bar" class="h-full bg-primary" style="width: 0%"></div>
+            </div>
+            <span id="practice-progress-text" class="text-[10px] font-bold text-slate-400 whitespace-nowrap">1 / 4</span>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button id="practice-favorite-btn" class="p-2 rounded-xl border border-rose-100 dark:border-rose-950 text-slate-450 hover:text-primary">
+              <i data-lucide="star" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </header>
+
+        <!-- Chat messages view -->
+        <div id="chat-messages-area" class="flex-1 p-6 overflow-y-auto space-y-6">
+          <!-- Chat bubbles are injected here -->
+          <!-- Sample structures:
+          AI bubble:
+          <div class="flex gap-3 max-w-[85%] animate-bubble-left">
+            <div class="w-8 h-8 rounded-full bg-primary flex-shrink-0 text-white flex items-center justify-center"><i data-lucide="cat" class="w-4.5 h-4.5"></i></div>
+            <div class="p-4 bg-rose-50/40 rounded-3xl rounded-tl-none border border-rose-100/50 text-sm font-semibold">
+              Hello! What can I get for you today?
+            </div>
+          </div>
+          User prompt bubble:
+          <div class="flex gap-3 max-w-[85%] ml-auto justify-end animate-bubble-right">
+            <div class="p-4 bg-pink-100/20 rounded-3xl rounded-tr-none border border-pink-200/50 text-sm text-right">
+              <span class="text-[10px] font-bold text-primary block uppercase tracking-wide mb-1">DỊCH Ý TIẾNG VIỆT</span>
+              Tôi muốn gọi một cốc cà phê sữa đá.
+            </div>
+          </div>
+          -->
+        </div>
+
+        <!-- Chat lower input panel -->
+        <footer id="chat-input-footer" class="border-t border-rose-100 dark:border-rose-950/40 bg-white dark:bg-slate-900 p-4 flex-shrink-0">
+          <div class="max-w-3xl mx-auto flex gap-3">
+            <textarea id="practice-user-input" rows="2" placeholder="Gõ câu dịch tiếng Anh của bạn tại đây... (Nhấn Enter để kiểm tra)" class="flex-1 p-3 rounded-2xl border border-rose-100 dark:border-rose-900/60 bg-transparent text-sm focus:outline-none focus:border-primary resize-none"></textarea>
+            
+            <button id="practice-check-btn" class="px-6 bg-primary hover:bg-primary-hover text-white font-extrabold text-sm rounded-2xl transition-all shadow-md shadow-primary/20 flex items-center justify-center gap-1.5 flex-shrink-0">
+              Gửi
+              <i data-lucide="send" class="w-4 h-4"></i>
+            </button>
+            <button id="chat-continue-btn" class="px-6 bg-success hover:bg-success/90 text-white font-extrabold text-sm rounded-2xl transition-all shadow-md shadow-success/15 hidden flex-shrink-0">
+              Tiếp tục
+            </button>
+          </div>
+        </footer>
+
+      </div>
+
+      <!-- RIGHT DRAWER: Grammar & Vocabulary feedback -->
+      <div id="practice-feedback-drawer" class="w-full md:w-80 bg-rose-50/20 dark:bg-slate-950/40 border-l border-rose-50 dark:border-rose-950/40 p-6 flex flex-col overflow-y-auto hidden">
+        <h3 class="font-extrabold text-slate-800 dark:text-white text-sm mb-4 border-b border-rose-100 pb-2">Nhận xét sửa lỗi của AI</h3>
+        
+        <div id="drawer-feedback-content" class="space-y-6 text-xs">
+          <!-- Populated dynamically when turn checked -->
+          <div class="text-center py-8 text-slate-400">
+            <i data-lucide="sparkles" class="w-8 h-8 text-primary/30 mx-auto mb-2 animate-bounce"></i>
+            Hãy gõ câu trả lời và nhấn gửi. AI của Kitty sẽ chấm điểm và giải thích ngữ pháp tức thì tại đây!
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 4. DIALOG MODAL: LEVEL UP -->
+    <div id="modal-levelup" class="fixed inset-0 z-55 flex items-center justify-center p-6 bg-slate-900/60 backdrop-blur-sm hidden animate-scalein">
+      <div class="bg-white dark:bg-slate-900 rounded-3xl border-thin shadow-2xl p-8 max-w-xs w-full text-center space-y-6">
+        <div class="w-20 h-20 bg-primary rounded-3xl text-white flex items-center justify-center font-black text-4xl shadow-lg shadow-primary/20 mx-auto animate-bounce">
+          😺
+        </div>
+        <div class="space-y-1">
+          <span class="text-[10px] bg-primary/10 text-primary font-bold uppercase px-2.5 py-1 rounded-full">LÊN CẤP ĐỘ MỚI</span>
+          <h3 id="modal-level-num-text" class="text-2xl font-black text-slate-900 dark:text-white pt-2">CẤP ĐỘ 2!</h3>
+          <p class="text-xs text-slate-400">Bạn đang tiến bộ rất nhanh. Tiếp tục giữ ngọn lửa phản xạ mỗi ngày nhé!</p>
+        </div>
+        <button id="modal-levelup-close" class="w-full py-3.5 bg-primary hover:bg-primary-hover text-white font-bold text-xs rounded-2xl transition-all shadow-md shadow-primary/10">
+          Tuyệt vời
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 0. AUTH VIEWPORT OVERLAY -->
+  <div id="auth-viewport" class="fixed inset-0 z-50 flex items-center justify-center p-6 bg-bgLight dark:bg-bgDark transition-all duration-300">
+    <div class="w-full max-w-md bg-white dark:bg-slate-900 rounded-3xl border-thin shadow-2xl p-8 space-y-8 flex flex-col items-center text-center animate-scalein">
+      <div class="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/25">
+        <i data-lucide="cat" class="w-6 h-6"></i>
+      </div>
+      
+      <div class="space-y-2">
+        <h2 class="text-2xl font-black tracking-tight text-slate-950 dark:text-white">Chào mừng tới Kitty</h2>
+        <p class="text-xs text-slate-500 dark:text-slate-400">Luyện dịch phản xạ ý từ giáo trình sang đối thoại tiếng Anh.<br>Rèn luyện thói quen tự nghĩ bằng Tiếng Anh mỗi ngày.</p>
+      </div>
+
+      <div class="w-full space-y-4">
+        <div class="text-left space-y-1.5">
+          <label class="text-[10px] font-bold text-slate-550 dark:text-slate-400 uppercase tracking-wide">Nhập tên của bạn</label>
+          <input type="text" id="auth-username" placeholder="Tên học viên..." value="Học viên" class="w-full px-4 py-3 rounded-2xl border border-rose-100 dark:border-rose-950 bg-transparent text-sm focus:border-primary focus:outline-none transition-all">
+        </div>
+        
+        <div class="text-left space-y-1.5">
+          <label class="text-[10px] font-bold text-slate-550 dark:text-slate-400 uppercase tracking-wide">Địa chỉ Email</label>
+          <input type="email" id="auth-email" placeholder="name@domain.com" class="w-full px-4 py-3 rounded-2xl border border-rose-100 dark:border-rose-950 bg-transparent text-sm focus:border-primary focus:outline-none transition-all">
+        </div>
+
+        <button id="auth-login-email-btn" class="w-full py-3.5 bg-primary hover:bg-primary-hover text-white text-xs font-bold rounded-2xl transition-all shadow-md shadow-primary/10 flex items-center justify-center gap-2">
+          <i data-lucide="mail" class="w-4 h-4"></i>
+          Đăng nhập bằng Email
+        </button>
+
+        <div class="relative flex items-center justify-center my-4">
+          <div class="absolute inset-0 border-t border-rose-100 dark:border-rose-950 w-full h-px"></div>
+          <span class="relative px-3 bg-white dark:bg-slate-900 text-[10px] text-slate-400 font-bold uppercase">Hoặc</span>
+        </div>
+
+        <button id="auth-login-google-btn" class="w-full py-3.5 bg-slate-50 hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-750 dark:text-slate-200 text-xs font-bold rounded-2xl transition-all border border-slate-200 dark:border-slate-700 flex items-center justify-center gap-2">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M22.5 12.27c0-.79-.07-1.54-.19-2.27H12v4.3h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.75h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.75c-.99.66-2.23 1.06-3.71 1.06-2.86 0-5.27-1.93-6.13-4.51H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M5.87 14.14c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.12H2.18C1.43 8.62 1 10.28 1 12s.43 3.38 1.18 4.88l3.69-2.74z" fill="#FBBC05"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.12l3.69 2.74c.86-2.58 3.27-4.51 6.13-4.51z" fill="#EA4335"/>
+          </svg>
+          Đăng nhập bằng Google
+        </button>
+      </div>
+      <span class="text-[10px] text-slate-400">Bằng cách tiếp tục, bạn đồng ý với Điều khoản dịch vụ và chính sách của Kitty.</span>
+    </div>
+  </div>
+
+  <script src="data/conversations.js"></script>
+  <script src="utils/db.js"></script>
+  <script src="services/ai.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+/* Kitty CSS Stylesheet - Soft Pink & Modern Aesthetic */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;800&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, .font-heading {
+  font-family: 'Outfit', sans-serif;
+}
+
+/* Kitty Pastel Pink Grid Background */
+.grid-bg {
+  background-image: 
+    radial-gradient(at 0% 0%, hsla(340, 100%, 98%, 1) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, hsla(350, 100%, 97%, 1) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, hsla(330, 100%, 98%, 1) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, hsla(340, 100%, 97%, 1) 0px, transparent 50%);
+  background-attachment: fixed;
+  background-color: #FFF5F5;
+}
+
+/* Pink Dark Mode support */
+.dark .grid-bg {
+  background-image: 
+    radial-gradient(at 0% 0%, hsla(325, 45%, 12%, 1) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, hsla(340, 50%, 10%, 1) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, hsla(325, 40%, 12%, 1) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, hsla(340, 50%, 10%, 1) 0px, transparent 50%);
+  background-color: #1e1115;
+}
+
+/* Subtle border outline details */
+.border-thin {
+  border: 1px solid rgba(251, 207, 232, 0.7); /* Light Pink border */
+}
+.dark .border-thin {
+  border: 1px solid rgba(244, 63, 94, 0.25);
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(244, 114, 182, 0.3); /* Pink scroll thumb */
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(244, 114, 182, 0.5);
+}
+
+/* Chat bubble entries animation */
+@keyframes bubbleSlideInLeft {
+  from {
+    transform: translateX(-15px) scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes bubbleSlideInRight {
+  from {
+    transform: translateX(15px) scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-bubble-left {
+  animation: bubbleSlideInLeft 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-bubble-right {
+  animation: bubbleSlideInRight 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Basic Animations */
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.animate-slideup {
+  animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.97);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.animate-scalein {
+  animation: scaleIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+.animate-float {
+  animation: float 2.5s ease-in-out infinite;
+}
+
+/* Flame animation */
+@keyframes flame {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    filter: drop-shadow(0 0 4px rgba(244, 63, 94, 0.4));
+  }
+  50% {
+    transform: scale(1.1) rotate(3deg);
+    filter: drop-shadow(0 0 10px rgba(236, 72, 153, 0.7));
+  }
+}
+.animate-flame {
+  animation: flame 1.5s ease-in-out infinite;
+}
+
+/* Confetti Sparkles */
+@keyframes sparkle {
+  0% { transform: scale(0); opacity: 0; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(0); opacity: 0; }
+}
+.sparkle-particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background-color: #F43F5E;
+  animation: sparkle 0.8s ease-in-out forwards;
+}
+
+/* Glass panel background */
+.glass {
+  background: rgba(255, 241, 242, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.dark .glass {
+  background: rgba(30, 17, 21, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.input-focus-ring:focus {
+  outline: none;
+  border-color: #EC4899;
+  box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.15);
+}
+.dark .input-focus-ring:focus {
+  outline: none;
+  border-color: #f43f5e;
+  box-shadow: 0 0 0 3px rgba(244, 63, 94, 0.25);
+}
