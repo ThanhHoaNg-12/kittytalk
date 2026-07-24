@@ -221,489 +221,659 @@ window.defaultConversations = [
   },
 
   // ==========================================
-  // 📚 BOOK 2: English Vocabulary in Use (Pre-Int & Intermediate)
-  // Unit 5: In The Coffee Shop (30 turns total)
+  // Unit 2: Birth, Marriage and Death (30 turns total)
   // ==========================================
   
-  // --- Unit 5 - Part 1: Entering and Ordering (10 turns) ---
+  // --- Unit 2 - Part 1: Birth & Naming (10 turns) ---
   {
-    id: "evu-pre-u5-p1",
-    title: "Unit 5 (Part 1): Gọi đồ uống",
-    topic: "Coffee Shop",
-    difficulty: "medium",
-    tags: ["English Vocabulary in Use Pre-Intermediate", "Unit 5: In the Coffee Shop", "A2"],
+    id: "evu-elem-u2-p1",
+    title: "Unit 2 (Part 1): Chào đời & Đặt tên",
+    topic: "Family & People",
+    difficulty: "easy",
+    tags: ["Vocabulary in Use (Elementary)", "Unit 2: Birth, marriage and death", "A1"],
     turns: [
-      { speaker: "ai", text: "Hello! Welcome to Kitty Cafe. What can I get started for you today?" },
+      { speaker: "ai", text: "Hey! Did you hear the news? Anna had a baby yesterday morning!" },
       {
         speaker: "user",
-        promptVietnamese: "Chào bạn. Cho tôi gọi một ly cà phê đen đá.",
-        english: "Hello. I'd like to order an iced black coffee.",
-        alternativeAnswers: ["Hi, can I get an iced black coffee, please?", "Hello, I will have an iced black coffee"],
-        meaning: "Chào bạn, cho tôi gọi một cốc cà phê đen đá.",
-        grammarNotes: "Sử dụng 'I'd like to' thay vì 'I want to' để yêu cầu đồ uống một cách lịch sự.",
-        vocabulary: [{ term: "iced black coffee", type: "noun", explanation: "cà phê đen đá" }],
-        nativeTip: "Cụm 'Can I get...?' là cách gọi đồ uống siêu tự nhiên tại các quán cà phê phương Tây."
+        promptVietnamese: "Tuyệt vời quá! Đứa trẻ sinh ra vào mấy giờ thế?",
+        english: "That's great! What time was the baby born?",
+        alternativeAnswers: ["Awesome! When was he born?", "That's wonderful! What time was he born?"],
+        meaning: "Tuyệt vời! Đứa trẻ chào đời lúc mấy giờ thế?",
+        grammarNotes: "Cấu trúc bị động của 'born' luôn chia ở quá khứ: 'was/were born'.",
+        vocabulary: [{ term: "born", type: "verb", explanation: "được sinh ra, chào đời" }],
+        nativeTip: "Luôn dùng 'was born' khi nói về sự sinh ra, không dùng 'is born' hay 'borns'."
       },
-      { speaker: "ai", text: "Sure! Do you want any sugar or milk in your coffee?" },
+      { speaker: "ai", text: "He was born at 1:15 yesterday morning. He weighed 3 kilograms." },
       {
         speaker: "user",
-        promptVietnamese: "Không, chỉ cà phê đen không đường thôi, cảm ơn bạn.",
-        english: "No, just plain black coffee, thank you.",
-        alternativeAnswers: ["No, just black coffee without sugar, thanks", "No sugar and no milk, thanks"],
-        meaning: "Không, chỉ cà phê đen nguyên chất thôi, cảm ơn.",
-        grammarNotes: "Dùng tính từ 'plain' để chỉ đồ ăn/thức uống nguyên bản, không thêm gia vị/sữa.",
-        vocabulary: [{ term: "plain", type: "adjective", explanation: "mộc, không pha chế thêm gì" }],
-        nativeTip: "Nói 'just black' là nhân viên pha chế sẽ hiểu bạn muốn uống đen đá không đường."
+        promptVietnamese: "Đứa bé nặng cân đó! Họ định đặt tên cậu ấy là gì?",
+        english: "The baby is heavy! What are they going to call him?",
+        alternativeAnswers: ["That's a heavy baby! What will they name him?", "He weighed a lot! What is his name going to be?"],
+        meaning: "Em bé nặng cân đó chứ! Họ định gọi tên cậu ấy là gì?",
+        grammarNotes: "Cấu trúc tương lai gần 'be going to + V' chỉ một dự định/kế hoạch đã định sẵn.",
+        vocabulary: [{ term: "call", type: "verb", explanation: "gọi tên, đặt tên là" }],
+        nativeTip: "Người bản xứ hay dùng 'call him [Name]' thay vì 'name him' trong khẩu ngữ."
       },
-      { speaker: "ai", text: "Understood. And what size would you prefer: small, medium, or large?" },
+      { speaker: "ai", text: "They are going to call him John - after his grandfather." },
       {
         speaker: "user",
-        promptVietnamese: "Cho tôi một ly cỡ vừa. Tôi có thể uống tại đây không?",
-        english: "A medium one, please. Can I drink it here?",
-        alternativeAnswers: ["Medium size, please. Is it for here?", "A medium, please. Can I sit here to drink it?"],
-        meaning: "Cho tôi cốc cỡ vừa. Tôi có thể uống ở đây được không?",
-        grammarNotes: "Cụm hỏi để uống tại chỗ là 'For here' đối lập với 'To go' (mang đi).",
-        vocabulary: [{ term: "prefer", type: "verb", explanation: "thích hơn, lựa chọn" }],
-        nativeTip: "Nhân viên thường hỏi ngắn gọn: 'For here or to go?' để biết bạn dùng tại quán hay mang về."
+        promptVietnamese: "Đặt tên theo ông nội của cậu ấy sao? Ý nghĩa quá.",
+        english: "Call him after his grandfather? That is very meaningful.",
+        alternativeAnswers: ["Named after his granddad? That is so nice", "Calling him after his grandfather is very meaningful"],
+        meaning: "Đặt tên theo ông nội sao? Rất ý nghĩa.",
+        grammarNotes: "Cụm động từ 'call/name after' có nghĩa là đặt tên theo gương ai đó.",
+        vocabulary: [{ term: "call after", type: "phrasal verb", explanation: "đặt tên theo gương ai" }],
+        nativeTip: "'Name after' hoặc 'call after' rất thông dụng trong văn hoá gia đình phương Tây."
       },
-      { speaker: "ai", text: "Yes, of course you can! That will be three dollars. How would you like to pay?" },
+      { speaker: "ai", text: "Yes, and his grandfather's birthday is June 16th too - born in 1957!" },
       {
         speaker: "user",
-        promptVietnamese: "Tôi thanh toán bằng thẻ tín dụng được không?",
-        english: "Can I pay by credit card?",
-        alternativeAnswers: ["Do you accept credit cards?", "Can I use my credit card?"],
-        meaning: "Tôi trả bằng thẻ tín dụng được không?",
-        grammarNotes: "Sử dụng giới từ 'by' trước các phương thức thanh toán 'by card', 'by cash'.",
-        vocabulary: [{ term: "credit card", type: "noun", explanation: "thẻ tín dụng" }],
-        nativeTip: "Do you take card? - câu hỏi thanh toán ngắn gọn của người bản xứ."
+        promptVietnamese: "Thật là một sự trùng hợp! Ông ấy sinh năm 1957 à?",
+        english: "What a coincidence! Was he born in 1957?",
+        alternativeAnswers: ["That is a coincidence! He was born in 1957, right?", "A nice coincidence! Was his grandfather born in 1957?"],
+        meaning: "Thật là trùng hợp ngẫu nhiên! Ông ấy sinh năm 1957 hả?",
+        grammarNotes: "Dùng cấu trúc cảm thán 'What a + noun!' (Thật là...).",
+        vocabulary: [{ term: "coincidence", type: "noun", explanation: "sự trùng hợp ngẫu nhiên" }],
+        nativeTip: "Cụm từ cảm thán 'What a coincidence!' được dùng cực kỳ nhiều khi phát hiện sự trùng lặp thú vị."
       },
-      { speaker: "ai", text: "Yes, we accept all cards. Please tap your card on the reader." },
+      { speaker: "ai", text: "Exactly! And the baby's parents were born in 1986." },
       {
         speaker: "user",
-        promptVietnamese: "Được rồi, tôi đã chạm thẻ rồi. Cảm ơn bạn.",
-        english: "Okay, I have tapped my card. Thank you.",
-        alternativeAnswers: ["Alright, I've tapped the card. Thanks", "Done, I swiped it. Thank you"],
-        meaning: "Ok, tôi chạm thẻ rồi. Cảm ơn.",
-        grammarNotes: "Thì Hiện tại Hoàn thành 'have tapped' chỉ hành động vừa mới hoàn thành xong.",
-        vocabulary: [{ term: "tap", type: "verb", explanation: "chạm, gõ nhẹ" }],
-        nativeTip: "Thời nay thanh toán không tiếp xúc dùng từ 'tap' thay vì 'swipe' (quẹt thẻ)."
+        promptVietnamese: "Bố mẹ đứa trẻ sinh năm 1986. Họ còn trẻ.",
+        english: "The baby's parents were born in 1986. They are young.",
+        alternativeAnswers: ["His parents were born in 1986. They are still young", "The parents were born in 1986, so they are quite young"],
+        meaning: "Bố mẹ em bé sinh năm 1986. Họ vẫn còn khá trẻ.",
+        grammarNotes: "Chủ ngữ số nhiều 'parents' đi với động từ to be quá khứ 'were'.",
+        vocabulary: [{ term: "parents", type: "noun", explanation: "bố mẹ (số nhiều)" }],
+        nativeTip: "Thêm 'quite' hoặc 'pretty' trước tính từ để làm giảm mức độ: 'pretty young' (khá trẻ)."
       }
     ]
   },
 
-  // --- Unit 5 - Part 2: Seat & Wifi (10 turns) ---
+  // --- Unit 2 - Part 2: Marriage & Honeymoon (10 turns) ---
   {
-    id: "evu-pre-u5-p2",
-    title: "Unit 5 (Part 2): Tìm chỗ ngồi & WiFi",
-    topic: "Coffee Shop",
-    difficulty: "medium",
-    tags: ["English Vocabulary in Use Pre-Intermediate", "Unit 5: In the Coffee Shop", "A2"],
+    id: "evu-elem-u2-p2",
+    title: "Unit 2 (Part 2): Kết hôn & Tuần trăng mật",
+    topic: "Family & People",
+    difficulty: "easy",
+    tags: ["Vocabulary in Use (Elementary)", "Unit 2: Birth, marriage and death", "A1"],
     turns: [
-      { speaker: "ai", text: "Great! Please take a seat, and we will bring the coffee to your table. Have a nice day!" },
+      { speaker: "ai", text: "Are Harry and Sarah still single, or did they finally get married?" },
       {
         speaker: "user",
-        promptVietnamese: "Cảm ơn bạn. Chỗ ngồi cạnh cửa sổ kia còn trống không?",
-        english: "Thank you. Is that seat by the window free?",
-        alternativeAnswers: ["Thanks. Is anyone sitting at that window table?", "Thank you. Is that window seat available?"],
-        meaning: "Cảm ơn bạn, ghế cạnh cửa sổ kia còn trống chứ?",
-        grammarNotes: "Tính từ 'free' hoặc 'available' dùng để hỏi ghế/chỗ có trống hay không.",
-        vocabulary: [{ term: "by the window", type: "phrase", explanation: "cạnh cửa sổ" }],
-        nativeTip: "Hỏi 'Is this seat taken?' (Chỗ này có ai ngồi chưa?) là câu thông dụng nhất để hỏi ghế trống."
+        promptVietnamese: "Họ đã kết hôn rồi. Họ làm đám cưới vào năm 2001.",
+        english: "They got married. They married in 2001.",
+        alternativeAnswers: ["They are married now. They got married in 2001", "They got married in 2001"],
+        meaning: "Họ cưới rồi. Họ kết hôn vào năm 2001.",
+        grammarNotes: "Dùng 'got married' (thân mật) hoặc 'married' (trang trọng) để chỉ việc đám cưới.",
+        vocabulary: [{ term: "get married", type: "verb phrase", explanation: "kết hôn, cưới" }],
+        nativeTip: "Người bản xứ nói 'They got married' thông dụng hơn rất nhiều so với 'They married'."
       },
-      { speaker: "ai", text: "Yes, that seat is empty. You can sit there. Do you need anything else?" },
+      { speaker: "ai", text: "Oh, congratulations to them! Where did they go for their honeymoon?" },
       {
         speaker: "user",
-        promptVietnamese: "Tôi muốn xin mật khẩu wifi của quán.",
-        english: "I'd like to get the wifi password of the shop.",
-        alternativeAnswers: ["Could you tell me the wifi password?", "What is the wifi password, please?", "Can I have the wifi password?"],
-        meaning: "Cho tôi xin mật khẩu wifi của quán nhé.",
-        grammarNotes: "Dùng từ hỏi 'What' hoặc yêu cầu lịch sự 'Could you...' để xin thông tin.",
-        vocabulary: [{ term: "wifi password", type: "noun", explanation: "mật khẩu wifi" }],
-        nativeTip: "Câu hỏi 'What's the wifi password?' là cách hỏi ngắn gọn và tự nhiên nhất."
+        promptVietnamese: "Họ đã đi nghỉ tuần trăng mật ở nước Ý.",
+        english: "They went on their honeymoon to Italy.",
+        alternativeAnswers: ["They travelled to Italy for their honeymoon", "They went to Italy on their honeymoon"],
+        meaning: "Họ đi hưởng tuần trăng mật ở Ý.",
+        grammarNotes: "Cụm từ 'go on a honeymoon' (đi hưởng tuần trăng mật).",
+        vocabulary: [{ term: "honeymoon", type: "noun", explanation: "tuần trăng mật" }],
+        nativeTip: "Luôn dùng giới từ 'to' sau honeymoon để chỉ điểm đến: 'honeymoon to Italy'."
       },
-      { speaker: "ai", text: "Sure, the password is 'kitty_cafe_2026' in lowercase. Let me write it down for you." },
+      { speaker: "ai", text: "Italy is so romantic! How long have they been married now?" },
       {
         speaker: "user",
-        promptVietnamese: "Cảm ơn bạn nhiều. Bạn thật chu đáo.",
-        english: "Thank you so much. That is very thoughtful of you.",
-        alternativeAnswers: ["Thanks a lot. You are very kind", "Thank you, that's very helpful"],
-        meaning: "Cảm ơn nhiều nhé. Bạn thật chu đáo quá.",
-        grammarNotes: "Cấu trúc cảm thán: 'It/That is + adjective + of + object'.",
-        vocabulary: [{ term: "thoughtful", type: "adjective", explanation: "chu đáo, ân cần" }],
-        nativeTip: "'That is very kind/thoughtful of you' nâng tầm tiếng Anh xã giao của bạn lên rất nhiều."
+        promptVietnamese: "Họ đã kết hôn được mười lăm năm rồi.",
+        english: "They have been married for fifteen years.",
+        alternativeAnswers: ["They've been married for 15 years now", "They were married for 15 years"],
+        meaning: "Họ đã lấy nhau được 15 năm rồi.",
+        grammarNotes: "Phân biệt 'got married' (hành động cưới) và 'be married' (trạng thái hôn nhân).",
+        vocabulary: [{ term: "married", type: "adjective", explanation: "đang trong trạng thái kết hôn" }],
+        nativeTip: "Dùng 'have been married' đi với khoảng thời gian để chỉ độ dài cuộc hôn nhân."
       },
-      { speaker: "ai", text: "No problem! Your iced black coffee is ready. Enjoy your drink!" },
+      { speaker: "ai", text: "Wow, 15 years is a long time. Did Sarah marry with Harry or someone else?" },
       {
         speaker: "user",
-        promptVietnamese: "Cà phê trông ngon quá. Chúc bạn một ngày làm việc vui vẻ.",
-        english: "The coffee looks delicious. Have a great workday.",
-        alternativeAnswers: ["It looks good. Have a nice shift!", "Looks great. Hope you have a good day at work"],
-        meaning: "Cà phê trông ngon quá. Chúc bạn ngày làm việc vui vẻ.",
-        grammarNotes: "Động từ trạng thái 'looks' theo sau bởi một tính từ 'delicious' để miêu tả cảm giác.",
-        vocabulary: [{ term: "workday", type: "noun", explanation: "ngày làm việc" }],
-        nativeTip: "Nói 'Have a good shift' đối với nhân viên làm việc theo ca là lời chúc cực kỳ bản xứ."
+        promptVietnamese: "Sarah đã kết hôn với Harry. Không phải người khác đâu.",
+        english: "Sarah got married to Harry. Not someone else.",
+        alternativeAnswers: ["Sarah married Harry. Not anyone else", "She got married to Harry, indeed."],
+        meaning: "Sarah cưới Harry. Không phải ai khác.",
+        grammarNotes: "Giới từ đi sau married luôn là 'to', KHÔNG dùng 'with'.",
+        vocabulary: [{ term: "married to", type: "phrase", explanation: "kết hôn với ai" }],
+        nativeTip: "Lỗi cực kỳ phổ biến của người Việt là nói 'married with'. Hãy luôn dùng 'married to'."
       },
-      { speaker: "ai", text: "Thank you! Please let me know if you need a refill or some water." },
+      { speaker: "ai", text: "Good to know. I hope their marriage stays strong and they never get divorced." },
       {
         speaker: "user",
-        promptVietnamese: "Được rồi, tôi sẽ cho bạn biết nếu cần. Cảm ơn nhé.",
-        english: "Okay, I will let you know if I need. Thanks.",
-        alternativeAnswers: ["Alright, I'll ask if I need anything. Thank you", "Okay, will do. Thanks"],
-        meaning: "Ok, tôi sẽ báo lại nếu cần. Cảm ơn.",
-        grammarNotes: "Thì Tương lai đơn 'I will let' diễn tả một quyết định đưa ra ngay tại thời điểm nói.",
-        vocabulary: [{ term: "let someone know", type: "phrase", explanation: "cho ai đó biết" }],
-        nativeTip: "Cụm từ 'will do' là tiếng lóng rút gọn rất hay của người bản xứ nghĩa là 'tôi sẽ làm thế'."
-      }
-    ]
-  },
-
-  // --- Unit 5 - Part 3: Chatting with Friend (10 turns) ---
-  {
-    id: "evu-pre-u5-p3",
-    title: "Unit 5 (Part 3): Gặp gỡ & Rời quán",
-    topic: "Coffee Shop",
-    difficulty: "medium",
-    tags: ["English Vocabulary in Use Pre-Intermediate", "Unit 5: In the Coffee Shop", "A2"],
-    turns: [
-      { speaker: "ai", text: "Hi Nam! Sorry I'm late. Have you been waiting for me long?" },
-      {
-        speaker: "user",
-        promptVietnamese: "Không sao đâu. Tôi cũng vừa mới đến quán thôi.",
-        english: "No problem. I have just arrived at the shop too.",
-        alternativeAnswers: ["That's fine. I just got here myself", "No worries. I just arrived as well"],
-        meaning: "Không sao cả, tôi cũng mới tới thôi.",
-        grammarNotes: "Sử dụng phó từ 'just' trong thì Hiện tại Hoàn thành để diễn tả hành động vừa mới xảy ra.",
-        vocabulary: [{ term: "arrive", type: "verb", explanation: "đến nơi, tới" }],
-        nativeTip: "Cụm 'I just got here' được dùng nhiều hơn 'arrive' trong văn nói thường ngày."
-      },
-      { speaker: "ai", text: "Whew, glad to hear that! What did you order? It looks refreshing." },
-      {
-        speaker: "user",
-        promptVietnamese: "Tôi gọi một ly cà phê đen đá. Bạn muốn uống gì không?",
-        english: "I ordered an iced black coffee. Do you want to drink something?",
-        alternativeAnswers: ["I got an iced black coffee. Would you like to order something?", "I'm having iced black coffee. What would you like?"],
-        meaning: "Tôi gọi cà phê đen đá. Bạn có muốn uống gì không?",
-        grammarNotes: "Thì Quá khứ đơn 'ordered' chỉ hành động gọi nước đã hoàn tất trước đó.",
-        vocabulary: [{ term: "iced", type: "adjective", explanation: "có đá, ướp đá" }],
-        nativeTip: "Hỏi lịch sự bằng cấu trúc 'What would you like to have?' hoặc 'What are you getting?'."
-      },
-      { speaker: "ai", text: "I think I will get a hot green tea. Let me go to the counter to order." },
-      {
-        speaker: "user",
-        promptVietnamese: "Được rồi, tôi sẽ ngồi ở đây đợi bạn quay lại.",
-        english: "Okay, I will sit here and wait for you to come back.",
-        alternativeAnswers: ["Alright, I'll wait for you here", "Okay, I will stay here and wait for you"],
-        meaning: "Được rồi, tôi sẽ ngồi đây đợi bạn trở lại.",
-        grammarNotes: "Cấu trúc 'wait for someone to do something' (đợi ai làm gì).",
-        vocabulary: [{ term: "come back", type: "phrasal verb", explanation: "quay trở lại" }],
-        nativeTip: "'I'll wait for you here' ngắn gọn và cực kỳ tự nhiên trong giao tiếp."
-      },
-      { speaker: "ai", text: "Thanks. (A few minutes later) I got my tea! Let's talk about our plans." },
-      {
-        speaker: "user",
-        promptVietnamese: "Tuyệt vời. Chúng ta nên bắt đầu thảo luận về chuyến đi du lịch.",
-        english: "Great. We should start discussing the travel trip.",
-        alternativeAnswers: ["Awesome. Let's talk about our vacation trip", "Great. We should discuss our travel plans"],
-        meaning: "Tuyệt vời. Chúng ta nên thảo luận về chuyến đi du lịch.",
-        grammarNotes: "Động từ 'discuss' đi trực tiếp với tân ngữ danh từ, không dùng discuss about.",
-        vocabulary: [{ term: "discuss", type: "verb", explanation: "thảo luận" }],
-        nativeTip: "Lỗi phổ biến nhất của người Việt là nói 'discuss about'. Hãy bỏ từ 'about' đi."
-      },
-      { speaker: "ai", text: "Yes! Time flies. Let's finish up and leave, it's getting dark." },
-      {
-        speaker: "user",
-        promptVietnamese: "Đúng vậy, chúng ta đi thôi. Hẹn gặp lại bạn ngày mai.",
-        english: "Yes, let's go. See you tomorrow.",
-        alternativeAnswers: ["Right, let's head out. See you tomorrow", "Yes, let's leave. Catch you tomorrow"],
-        meaning: "Đúng vậy, đi thôi. Hẹn gặp ngày mai nhé.",
-        grammarNotes: "Cấu trúc đề nghị 'Let's + động từ nguyên thể' (hãy cùng làm gì).",
-        vocabulary: [{ term: "leave", type: "verb", explanation: "rời đi, rời khỏi" }],
-        nativeTip: "Cụm 'let's head out' là tiếng lóng rất hay nghĩa là 'chúng ta cùng đi ra ngoài thôi'."
-      }
-    ]
-  },
-
-  // ==========================================
-  // 📚 BOOK 3: English Vocabulary in Use (Upper-Int)
-  // Unit 25: Office & Work (30 turns total)
-  // ==========================================
-  
-  // --- Unit 25 - Part 1: Morning Check-in & Traffic (10 turns) ---
-  {
-    id: "evu-upper-u25-p1",
-    title: "Unit 25 (Part 1): Check-in sáng & Tắc đường",
-    topic: "Office",
-    difficulty: "hard",
-    tags: ["English Vocabulary in Use Upper-Intermediate", "Unit 25: Office and Work", "B1"],
-    turns: [
-      { speaker: "ai", text: "Good morning, Nam! You made it just in time. Did you get caught in traffic?" },
-      {
-        speaker: "user",
-        promptVietnamese: "Chào buổi sáng. Tôi bị trễ mười phút vì tắc đường.",
-        english: "Good morning. I was late by ten minutes because of a traffic jam.",
-        alternativeAnswers: ["Good morning. I'm ten minutes late due to traffic", "Morning. I got stuck in traffic and was late for 10 minutes"],
-        meaning: "Chào buổi sáng. Tôi bị trễ 10 phút do kẹt xe.",
-        grammarNotes: "Dùng cụm giới từ 'because of' theo sau bởi cụm danh từ 'a traffic jam'.",
+        promptVietnamese: "Đúng vậy, ly hôn hoặc ly thân đều rất đau lòng.",
+        english: "Yes, getting divorced or separated is very heartbreaking.",
+        alternativeAnswers: ["Right, divorce or separation is very sad", "Yes, getting separated or divorced is very painful"],
+        meaning: "Đúng vậy, ly hôn hay ly thân đều rất đau đớn/buồn bã.",
+        grammarNotes: "Phân biệt 'separated' (ly thân - sống riêng) và 'divorced' (ly hôn pháp lý).",
         vocabulary: [
-          { term: "traffic jam", type: "noun", explanation: "sự kẹt xe, tắc đường" },
-          { term: "late by", type: "phrase", explanation: "muộn mất khoảng bao lâu" }
+          { term: "separated", type: "adjective", explanation: "ly thân" },
+          { term: "divorced", type: "adjective", explanation: "ly hôn" }
         ],
-        nativeTip: "'I got stuck in traffic' (tôi bị kẹt xe) là lý do xin đi muộn phổ biến và lịch sự nhất."
-      },
-      { speaker: "ai", text: "No worries, the traffic today is indeed terrible. Let's grab some coffee before the morning meeting." },
-      {
-        speaker: "user",
-        promptVietnamese: "Ý kiến hay đó. Hôm nay ai sẽ chủ trì cuộc họp buổi sáng?",
-        english: "Good idea. Who is going to chair the morning meeting today?",
-        alternativeAnswers: ["That's a good idea. Who will lead the morning meeting today?", "Great idea. Who is running the morning meeting today?"],
-        meaning: "Ý kiến hay. Ai chủ trì cuộc họp sáng nay thế?",
-        grammarNotes: "Sử dụng động từ 'chair' với nghĩa là chủ trì/chủ tọa một cuộc họp.",
-        vocabulary: [{ term: "chair", type: "verb", explanation: "chủ trì (cuộc họp, phiên tòa)" }],
-        nativeTip: "'Run a meeting' hoặc 'lead a meeting' cũng là cách nói vô cùng thông dụng của các sếp."
-      },
-      { speaker: "ai", text: "I believe the project manager is chairing it today. We have a lot of updates to go through." },
-      {
-        speaker: "user",
-        promptVietnamese: "Tôi hiểu rồi. Tôi cần in một số tài liệu cho cuộc họp.",
-        english: "I see. I need to print out some documents for the meeting.",
-        alternativeAnswers: ["I understand. I have to print some papers for the meeting", "I see. I need to make some copies of the documents"],
-        meaning: "Tôi biết rồi. Tôi cần in vài tài liệu cho cuộc họp.",
-        grammarNotes: "Phrasal verb 'print out' nghĩa là in từ máy tính ra giấy vật lý.",
-        vocabulary: [{ term: "print out", type: "phrasal verb", explanation: "in ra giấy" }],
-        nativeTip: "Người bản xứ thường dùng 'print out' hơn là chỉ nói 'print' khi làm việc công sở."
-      },
-      { speaker: "ai", text: "Sure, the copier is in the hallway. Let me know if it runs out of paper." },
-      {
-        speaker: "user",
-        promptVietnamese: "Cảm ơn bạn. Tôi sẽ kiểm tra nó trước khi sử dụng.",
-        english: "Thank you. I will check it before using it.",
-        alternativeAnswers: ["Thanks, I'll inspect it first", "Thank you, I will make sure it has paper before I start"],
-        meaning: "Cảm ơn. Tôi sẽ kiểm tra máy trước khi dùng.",
-        grammarNotes: "Sử dụng danh động từ 'using' sau giới từ chỉ thời gian 'before'.",
-        vocabulary: [{ term: "copier", type: "noun", explanation: "máy photocopy" }],
-        nativeTip: "Máy photocopy thường được gọi ngắn gọn là 'photocopier' hoặc 'copier'."
-      },
-      { speaker: "ai", text: "Great. Meet you in the conference room in five minutes." },
-      {
-        speaker: "user",
-        promptVietnamese: "Được rồi, tôi sẽ đến đó ngay sau khi in xong.",
-        english: "Okay, I will head there right after I finish printing.",
-        alternativeAnswers: ["Alright, I'll be there as soon as I print", "Okay, I will go there immediately after printing"],
-        meaning: "Được rồi, tôi sẽ qua đó ngay sau khi in xong.",
-        grammarNotes: "Động từ 'finish' bắt buộc đi kèm danh động từ V-ing ('printing').",
-        vocabulary: [{ term: "head to", type: "verb phrase", explanation: "đi về hướng, đi tới" }],
-        nativeTip: "Cụm 'head there' (đi đến đó) cực kỳ bản xứ và chuyên nghiệp trong văn phòng."
+        nativeTip: "Người bản xứ dùng 'split up' hoặc 'break up' như cụm từ thân mật chỉ việc chia tay/ly thân."
       }
     ]
   },
 
-  // --- Unit 25 - Part 2: The Project Meeting (10 turns) ---
+  // --- Unit 2 - Part 3: Illness & Death (10 turns) ---
   {
-    id: "evu-upper-u25-p2",
-    title: "Unit 25 (Part 2): Cuộc họp dự án",
-    topic: "Office",
-    difficulty: "hard",
-    tags: ["English Vocabulary in Use Upper-Intermediate", "Unit 25: Office and Work", "B1"],
+    id: "evu-elem-u2-p3",
+    title: "Unit 2 (Part 3): Đau ốm & Qua đời",
+    topic: "Family & People",
+    difficulty: "easy",
+    tags: ["Vocabulary in Use (Elementary)", "Unit 2: Birth, marriage and death", "A1"],
     turns: [
-      { speaker: "ai", text: "Thanks for joining. Today we need to discuss the project schedule and deadlines." },
+      { speaker: "ai", text: "I have some sad news about Harry. He became very ill last month." },
       {
         speaker: "user",
-        promptVietnamese: "Tôi đã chuẩn bị báo cáo tiến độ cho nhóm.",
-        english: "I have prepared the progress report for the team.",
-        alternativeAnswers: ["I've prepared the status update for the team", "I prepared the progress report for everyone"],
-        meaning: "Tôi đã chuẩn bị báo cáo tiến độ cho nhóm.",
-        grammarNotes: "Thì Hiện tại Hoàn thành biểu thị kết quả chuẩn bị vẫn còn tác dụng trong cuộc họp.",
-        vocabulary: [{ term: "progress report", type: "noun", explanation: "báo cáo tiến độ" }],
-        nativeTip: "'Status report' hoặc 'progress report' là các thuật ngữ chuẩn mực trong quản lý dự án."
+        promptVietnamese: "Ôi không! Ông ấy bị làm sao thế?",
+        english: "Oh no! What happened to him?",
+        alternativeAnswers: ["Oh no! What was wrong with him?", "Dear me! What illness did he have?"],
+        meaning: "Ôi không! Chuyện gì xảy ra với ông ấy thế?",
+        grammarNotes: "Câu hỏi quá khứ đơn 'What happened to...' dùng để hỏi về sự cố xảy ra.",
+        vocabulary: [{ term: "became ill", type: "phrase", explanation: "bị đổ bệnh, mắc bệnh" }],
+        nativeTip: "Nói 'What happened?' tự nhiên hơn 'What was the problem?'."
       },
-      { speaker: "ai", text: "Perfect! Has anyone updated the client on our recent delay?" },
+      { speaker: "ai", text: "He died last year of a sudden heart attack." },
       {
         speaker: "user",
-        promptVietnamese: "Trưởng nhóm của chúng tôi đã gửi email giải trình cho họ sáng nay.",
-        english: "Our team leader emailed them an explanation this morning.",
-        alternativeAnswers: ["Our manager sent them an email explaining it this morning", "Our team lead has emailed them the explanation earlier today"],
-        meaning: "Trưởng nhóm chúng tôi đã gửi email giải thích cho họ sáng nay.",
-        grammarNotes: "Từ 'email' được sử dụng trực tiếp làm động từ trong câu.",
-        vocabulary: [{ term: "team leader", type: "noun", explanation: "trưởng nhóm" }],
-        nativeTip: "Dùng trực tiếp động từ 'email' thay vì 'send an email' để nói ngắn gọn, chuyên nghiệp hơn."
-      },
-      { speaker: "ai", text: "Good. We must stay on track to avoid any further penalties. What is the next task?" },
-      {
-        speaker: "user",
-        promptVietnamese: "Chúng ta cần hoàn thành thiết kế bản vẽ kỹ thuật vào ngày mai.",
-        english: "We need to finalize the engineering design by tomorrow.",
-        alternativeAnswers: ["We must finish the technical blueprint by tomorrow", "We have to finalize the technical designs by tomorrow"],
-        meaning: "Chúng ta cần hoàn tất thiết kế kỹ thuật vào ngày mai.",
-        grammarNotes: "Giới từ 'by' đứng trước mốc thời gian chỉ giới hạn 'trước ngày mai'.",
-        vocabulary: [{ term: "finalize", type: "verb", explanation: "hoàn tất, chốt bản cuối" }],
-        nativeTip: "Từ 'finalize' mang tính chất chốt duyệt phiên bản cuối cùng của tài liệu."
-      },
-      { speaker: "ai", text: "Excellent. Please assign this task to the developer team immediately." },
-      {
-        speaker: "user",
-        promptVietnamese: "Tôi sẽ bàn giao công việc này cho họ ngay sau cuộc họp.",
-        english: "I will hand over this task to them right after the meeting.",
-        alternativeAnswers: ["I will assign this work to them after we finish", "I'll transfer this duty to them right after the meeting"],
-        meaning: "Tôi sẽ bàn giao công việc này cho họ ngay sau cuộc họp.",
-        grammarNotes: "Phrasal verb 'hand over' nghĩa là bàn giao lại công việc/trách nhiệm.",
-        vocabulary: [{ term: "hand over", type: "phrasal verb", explanation: "bàn giao" }],
-        nativeTip: "Dùng 'hand over' khi chuyển giao công việc hoặc chuyển giao ca làm việc."
-      },
-      { speaker: "ai", text: "Thank you. Let's move on to the next item on our agenda." },
-      {
-        speaker: "user",
-        promptVietnamese: "Chủ đề tiếp theo là ngân sách cho chiến dịch tiếp thị.",
-        english: "The next topic is the budget for the marketing campaign.",
-        alternativeAnswers: ["The next item is the marketing campaign budget", "Next, we will discuss the budget for marketing"],
-        meaning: "Chủ đề tiếp theo là ngân sách cho chiến dịch marketing.",
+        promptVietnamese: "Tôi rất tiếc khi nghe điều đó. Ông ấy mất vì đau tim sao?",
+        english: "I am sorry to hear that. Did he die of a heart attack?",
+        alternativeAnswers: ["Sorry to hear that. Did he pass away from a heart attack?", "I'm so sorry. Did he die from a heart attack?"],
+        meaning: "Tôi rất tiếc khi biết tin. Ông ấy qua đời vì đau tim phải không?",
+        grammarNotes: "Cấu trúc chỉ nguyên nhân qua đời: 'die of + disease' hoặc 'die from + accident'.",
         vocabulary: [
-          { term: "budget", type: "noun", explanation: "ngân sách" },
-          { term: "agenda", type: "noun", explanation: "chương trình nghị sự, nội dung họp" }
+          { term: "die of", type: "phrase", explanation: "qua đời vì bệnh gì" },
+          { term: "heart attack", type: "noun", explanation: "cơn đau tim, đột quỵ" }
         ],
-        nativeTip: "'Next item on the agenda' là câu chuyển đề tài rất chuẩn trong các cuộc họp chuyên nghiệp."
-      }
-    ]
-  },
-
-  // --- Unit 25 - Part 3: Leaving the Office (10 turns) ---
-  {
-    id: "evu-upper-u25-p3",
-    title: "Unit 25 (Part 3): Rời văn phòng & OT",
-    topic: "Office",
-    difficulty: "hard",
-    tags: ["English Vocabulary in Use Upper-Intermediate", "Unit 25: Office and Work", "B1"],
-    turns: [
-      { speaker: "ai", text: "Wow, it's already 6 PM. The workday is officially over. Are you leaving now?" },
-      {
-        speaker: "user",
-        promptVietnamese: "Tôi cần phải làm việc ngoài giờ để hoàn thành báo cáo này.",
-        english: "I need to work overtime to finish this report.",
-        alternativeAnswers: ["I have to do some overtime to complete this report", "I need to work late to get this report done"],
-        meaning: "Tôi phải làm thêm giờ để hoàn tất báo cáo này.",
-        grammarNotes: "Cụm từ 'work overtime' có nghĩa là làm việc ngoài giờ hành chính quy định.",
-        vocabulary: [{ term: "overtime", type: "noun/adverb", explanation: "giờ làm thêm, ngoài giờ" }],
-        nativeTip: "Người bản xứ hay nói tắt làm việc muộn là 'work late' hoặc 'do OT' (Overtime)."
+        nativeTip: "'Pass away' là cụm từ nói giảm nói tránh lịch sự thay thế cho động từ 'die'."
       },
-      { speaker: "ai", text: "Don't work too hard! You've been working non-stop since morning." },
+      { speaker: "ai", text: "Yes. Now Sarah is widowed and living alone. The funeral was last week." },
       {
         speaker: "user",
-        promptVietnamese: "Tôi sẽ chỉ ở lại thêm khoảng một tiếng nữa thôi.",
-        english: "I will only stay for about one more hour.",
-        alternativeAnswers: ["I'll only stay for around one hour", "I will only remain here for one more hour"],
-        meaning: "Tôi sẽ chỉ ở lại thêm khoảng 1 tiếng nữa.",
-        grammarNotes: "Cụm từ 'one more hour' chỉ thời gian kéo dài thêm một tiếng nữa.",
-        vocabulary: [{ term: "stay", type: "verb", explanation: "ở lại, lưu lại" }],
-        nativeTip: "'One more hour' hoặc 'another hour' đều diễn tả thời gian ở lại thêm."
+        promptVietnamese: "Tội nghiệp Sarah. Đám tang diễn ra ở đâu thế?",
+        english: "Poor Sarah. Where did the funeral take place?",
+        alternativeAnswers: ["Poor her. Where was the funeral held?", "Poor Sarah. Where was the funeral?"],
+        meaning: "Tội nghiệp Sarah. Đám tang tổ chức ở đâu thế?",
+        grammarNotes: "Cụm động từ 'take place' nghĩa là diễn ra/tổ chức ở đâu đó.",
+        vocabulary: [
+          { term: "widowed", type: "adjective", explanation: "bị góa (chồng/vợ mất)" },
+          { term: "funeral", type: "noun", explanation: "đám tang, tang lễ" }
+        ],
+        nativeTip: "'Poor [Name]' là cụm từ cửa miệng biểu thị sự thương cảm đối với hoàn cảnh của ai đó."
       },
-      { speaker: "ai", text: "Alright. Remember to turn off the lights and lock the door when you leave." },
+      { speaker: "ai", text: "It was held at the local church. Many relatives came to support her." },
       {
         speaker: "user",
-        promptVietnamese: "Được rồi, tôi sẽ khóa cửa văn phòng cẩn thận.",
-        english: "Okay, I will lock the office door carefully.",
-        alternativeAnswers: ["Alright, I'll make sure the office is locked", "Okay, I will lock up the office properly"],
-        meaning: "Được rồi, tôi sẽ khóa cửa văn phòng cẩn thận.",
-        grammarNotes: "Trạng từ 'carefully' đứng sau tân ngữ 'the office door' để bổ nghĩa cho động từ 'lock'.",
-        vocabulary: [{ term: "lock", type: "verb", explanation: "khóa cửa" }],
-        nativeTip: "Cụm 'lock up' thường được dùng trong văn phòng chỉ việc khóa tất cả cửa trước khi về."
+        promptVietnamese: "Thật mừng là mọi người ở đó. Harry đã qua đời rồi nhưng sẽ luôn được nhớ tới.",
+        english: "I'm glad people were there. Harry is dead but will always be remembered.",
+        alternativeAnswers: ["Good that they came. Harry passed away but we will miss him", "Glad to hear that. Harry is gone but not forgotten"],
+        meaning: "Mừng là mọi người có mặt. Harry đã mất nhưng sẽ luôn được nhớ tới.",
+        grammarNotes: "Phân biệt: 'dead' là tính từ chỉ trạng thái, 'died' là động từ quá khứ.",
+        vocabulary: [{ term: "dead", type: "adjective", explanation: "đã chết, đã mất" }],
+        nativeTip: "Lỗi người Việt cực hay dùng 'Harry is died' hoặc 'Harry is death'. Hãy nhớ: 'Harry is dead' hoặc 'Harry died'."
       },
-      { speaker: "ai", text: "Thanks. Have a good evening, Nam. See you tomorrow morning!" },
+      { speaker: "ai", text: "Yes, he was a great man. May he rest in peace." },
       {
         speaker: "user",
-        promptVietnamese: "Cảm ơn bạn. Chúc bạn buổi tối vui vẻ. Hẹn gặp lại ngày mai.",
-        english: "Thank you. Have a good evening. See you tomorrow.",
-        alternativeAnswers: ["Thanks. You too. See you tomorrow", "Thank you. Have a nice evening. See you tomorrow"],
-        meaning: "Cảm ơn. Chúc tối vui vẻ. Hẹn gặp ngày mai.",
-        grammarNotes: "Lời chúc xã giao chuẩn: 'Have a good/nice evening'.",
-        vocabulary: [{ term: "evening", type: "noun", explanation: "buổi tối" }],
-        nativeTip: "Khi ai đó chúc bạn 'Have a good evening', bạn có thể trả lời nhanh gọn 'You too!'."
-      },
-      { speaker: "ai", text: "Take care! Bye." },
-      {
-        speaker: "user",
-        promptVietnamese: "Tạm biệt bạn. Đi đường cẩn thận nhé.",
-        english: "Goodbye. Drive safely.",
-        alternativeAnswers: ["Bye. Take care on the road", "Goodbye. Get home safely"],
-        meaning: "Tạm biệt bạn. Đi đường an toàn nhé.",
-        grammarNotes: "Cụm câu mệnh lệnh khuyên nhủ lịch sự: 'Drive + adverb (safely)'.",
-        vocabulary: [{ term: "safely", type: "adverb", explanation: "một cách an toàn" }],
-        nativeTip: "'Drive safely' hoặc 'Get home safe' là lời chào ra về vô cùng ấm áp và lịch sự ở các nước."
+        promptVietnamese: "Mong ông ấy yên nghỉ. Cảm ơn bạn đã báo tin.",
+        english: "May he rest in peace. Thank you for telling me.",
+        alternativeAnswers: ["Rest in peace. Thanks for letting me know", "May he RIP. Thank you for the update"],
+        meaning: "Mong ông ấy yên nghỉ. Cảm ơn đã báo tin cho tôi.",
+        grammarNotes: "Cấu trúc lời cầu nguyện/mong ước: 'May + subject + verb'.",
+        vocabulary: [{ term: "rest in peace", type: "phrase", explanation: "yên nghỉ, an nghỉ (RIP)" }],
+        nativeTip: "Viết tắt 'R.I.P' (Rest In Peace) cực kỳ phổ biến trong lời chia buồn tiếng Anh."
       }
     ]
   },
 
   // ==========================================
-  // 📚 BOOK 4: English Vocabulary in Use (Advanced)
-  // Unit 60: Business & Entrepreneurship (30 turns total)
+  // Unit 4: Clothes (30 turns total)
   // ==========================================
   
-  // --- Unit 60 - Part 1: Raising Capital (10 turns) ---
+  // --- Unit 4 - Part 1: Getting Dressed & Plural Clothes (10 turns) ---
   {
-    id: "evu-adv-u60-p1",
-    title: "Unit 60 (Part 1): Huy động vốn khởi nghiệp",
-    topic: "Business",
-    difficulty: "hard",
-    tags: ["English Vocabulary in Use Advanced", "Unit 60: Business & Entrepreneurship", "B2"],
+    id: "evu-elem-u4-p1",
+    title: "Unit 4 (Part 1): Mặc đồ buổi sáng",
+    topic: "Shopping",
+    difficulty: "easy",
+    tags: ["Vocabulary in Use (Elementary)", "Unit 4: Clothes", "A1"],
     turns: [
-      { speaker: "ai", text: "Hello! Welcome to Kitty Capital. I read your startup pitch deck. Are you seeking seed funding?" },
+      { speaker: "ai", text: "Good morning! It's cold outside today. What are you putting on?" },
       {
         speaker: "user",
-        promptVietnamese: "Vâng, chúng tôi đang tìm kiếm khoản đầu tư thiên thần trị giá hai trăm nghìn đô la.",
-        english: "Yes, we are seeking an angel investment of two hundred thousand dollars.",
-        alternativeAnswers: ["Yes, we're looking for a two-hundred-thousand-dollar angel investment", "Yes, we are seeking seed funding of $200,000 from angel investors"],
-        meaning: "Vâng, chúng tôi đang tìm kiếm khoản đầu tư thiên thần trị giá 200,000 đô la.",
-        grammarNotes: "Thì Hiện tại Tiếp diễn 'are seeking' mô tả nỗ lực đang tiếp diễn của startup.",
+        promptVietnamese: "Tôi đang mặc một chiếc áo len và quần dài ấm áp.",
+        english: "I am putting on a warm sweater and trousers.",
+        alternativeAnswers: ["I'm wearing a warm jumper and pants", "I'm putting on a sweater and these trousers"],
+        meaning: "Tôi đang mặc một chiếc áo len và quần dài ấm.",
+        grammarNotes: "Phrasal verb 'put on' là hành động xỏ/mặc đồ, còn 'wear' là trạng thái đang mặc đồ trên người.",
         vocabulary: [
-          { term: "angel investment", type: "noun", explanation: "đầu tư thiên thần (vốn ban đầu)" },
-          { term: "seek", type: "verb", explanation: "tìm kiếm, săn lùng" }
+          { term: "sweater", type: "noun", explanation: "áo len chui đầu (Anh-Mỹ)" },
+          { term: "trousers", type: "noun", explanation: "quần dài (Anh-Anh)" }
         ],
-        nativeTip: "'Angel investment' là khoản đầu tư từ các cá nhân giàu có ở giai đoạn sơ khai của doanh nghiệp."
+        nativeTip: "Người Anh gọi áo len là 'jumper', người Mỹ gọi là 'sweater'."
       },
-      { speaker: "ai", text: "That is a reasonable amount. What is your startup's pre-money valuation?" },
+      { speaker: "ai", text: "Good choice! Are those trousers new? They look very stylish." },
       {
         speaker: "user",
-        promptVietnamese: "Định giá trước khi gọi vốn của chúng tôi là hai triệu đô la.",
-        english: "Our pre-money valuation is two million dollars.",
-        alternativeAnswers: ["Our startup is valued at two million dollars before funding", "The pre-money valuation is $2,000,000"],
-        meaning: "Định giá trước gọi vốn của chúng tôi là 2 triệu đô la.",
-        grammarNotes: "Danh từ ghép tài chính 'pre-money valuation'.",
-        vocabulary: [{ term: "valuation", type: "noun", explanation: "sự định giá, trị giá định đoạt" }],
-        nativeTip: "'Pre-money valuation' là giá trị công ty trước khi nhận khoản đầu tư mới."
-      },
-      { speaker: "ai", text: "And what is your current monthly burn rate?" },
-      {
-        speaker: "user",
-        promptVietnamese: "Tốc độ tiêu tiền hàng tháng của chúng tôi khoảng mười lăm nghìn đô la.",
-        english: "Our monthly burn rate is around fifteen thousand dollars.",
-        alternativeAnswers: ["We burn about fifteen thousand dollars a month", "Our current monthly burn rate is approximately $15,000"],
-        meaning: "Tốc độ chi tiêu hàng tháng của chúng tôi khoảng 15,000 đô la.",
-        grammarNotes: "Cụm danh từ tài chính khởi nghiệp 'monthly burn rate'.",
-        vocabulary: [{ term: "burn rate", type: "noun", explanation: "tốc độ tiêu tiền (của startup)" }],
-        nativeTip: "'Burn rate' chỉ tốc độ một công ty mới tiêu hết số vốn đầu tư trước khi tự tạo dòng tiền dương."
-      },
-      { speaker: "ai", text: "That gives you more than a year of runway. What is your monetization strategy?" },
-      {
-        speaker: "user",
-        promptVietnamese: "Chúng tôi sử dụng mô hình đăng ký trả phí định kỳ (SaaS).",
-        english: "We use a recurring subscription model (SaaS).",
-        alternativeAnswers: ["We monetize through a monthly subscription model", "We utilize a software-as-a-service subscription model"],
-        meaning: "Chúng tôi kiếm tiền thông qua mô hình đăng ký dịch vụ định kỳ (SaaS).",
-        grammarNotes: "Tính từ 'recurring' mô tả dòng tiền lặp đi lặp lại hằng tháng/năm.",
+        promptVietnamese: "Bộ vest của tôi thì mới nhưng chiếc quần này thì cũ rồi.",
+        english: "My suit is new, but these trousers are old.",
+        alternativeAnswers: ["My suit is new but the trousers are old", "This suit is new but these pants are old"],
+        meaning: "Bộ vest của tôi mới nhưng cái quần này cũ rồi.",
+        grammarNotes: "Từ 'trousers' luôn ở dạng số nhiều và đi với động từ số nhiều 'are'.",
         vocabulary: [
-          { term: "recurring", type: "adjective", explanation: "định kỳ, lặp lại thường xuyên" },
-          { term: "subscription", type: "noun", explanation: "sự đăng ký thuê bao" }
+          { term: "suit", type: "noun", explanation: "bộ vest, comple" },
+          { term: "trousers are", type: "grammar", explanation: "luôn dùng động từ số nhiều" }
         ],
-        nativeTip: "'SaaS' là viết tắt của Software-as-a-Service, mô hình SaaS cực kỳ phổ biến đối với startup công nghệ."
+        nativeTip: "Tránh nói 'this trousers is old' vì trousers luôn đi với số nhiều 'these' và 'are'."
       },
-      { speaker: "ai", text: "Excellent. Let's talk about the equity share you are offering for this round." },
+      { speaker: "ai", text: "Ah, I see. What about your jeans? Are they blue or black?" },
       {
         speaker: "user",
-        promptVietnamese: "Chúng tôi sẵn sàng nhượng lại mười phần trăm cổ phần cho vòng gọi vốn này.",
-        english: "We are willing to offer ten percent equity for this round.",
-        alternativeAnswers: ["We are offering a ten percent stake in this funding round", "We can give ten percent equity for this investment"],
-        meaning: "Chúng tôi sẵn lòng nhượng lại 10% cổ phần cho vòng này.",
-        grammarNotes: "Cấu trúc 'be willing to + V' (sẵn lòng/sẵn sàng làm gì).",
-        vocabulary: [{ term: "equity", type: "noun", explanation: "cổ phần sở hữu, vốn chủ sở hữu" }],
-        nativeTip: "Từ 'stake' cũng được dùng phổ biến để thay cho 'equity' với nghĩa là tỷ lệ sở hữu."
+        promptVietnamese: "Quần jean của tôi màu xanh dương. Tôi cũng có quần đùi nữa.",
+        english: "My jeans are blue. I have shorts too.",
+        alternativeAnswers: ["Her jeans are blue. I've got shorts as well", "My jeans are blue. I also have shorts"],
+        meaning: "Quần jean của tôi màu xanh. Tôi cũng có quần đùi nữa.",
+        grammarNotes: "Từ 'jeans' và 'shorts' luôn ở số nhiều giống như 'trousers'.",
+        vocabulary: [
+          { term: "jeans", type: "noun", explanation: "quần bò, quần jean" },
+          { term: "shorts", type: "noun", explanation: "quần soóc, quần đùi" }
+        ],
+        nativeTip: "Bạn có thể nói 'a pair of jeans' hoặc 'a pair of shorts' để đếm số lượng."
+      },
+      { speaker: "ai", text: "Nice! Are you going to wear socks and boots with your trousers?" },
+      {
+        speaker: "user",
+        promptVietnamese: "Vâng, tôi đang đi tất và mang đôi ủng da của tôi.",
+        english: "Yes, I am wearing socks and putting on my leather boots.",
+        alternativeAnswers: ["Yes, I'll wear socks and boots", "Yes, socks and leather boots, please"],
+        meaning: "Đúng vậy, tôi đi tất và mang đôi ủng da.",
+        grammarNotes: "Sử dụng tính từ chỉ chất liệu 'leather' đứng trước danh từ 'boots'.",
+        vocabulary: [
+          { term: "socks", type: "noun", explanation: "tất, vớ" },
+          { term: "boots", type: "noun", explanation: "ủng, bốt" }
+        ],
+        nativeTip: "Dùng 'put on' cho hành động đang xỏ tất/giày vào chân."
+      },
+      { speaker: "ai", text: "Perfect. Don't forget your scarf and gloves. It is freezing!" },
+      {
+        speaker: "user",
+        promptVietnamese: "Cảm ơn bạn. Tôi đã quàng khăn cổ và đeo găng tay rồi.",
+        english: "Thank you. I have put on my scarf and gloves.",
+        alternativeAnswers: ["Thanks. I've got my scarf and gloves on", "Thank you, I already wore my scarf and gloves"],
+        meaning: "Cảm ơn, tôi quàng khăn và đeo găng tay rồi.",
+        grammarNotes: "Thì Hiện tại Hoàn thành diễn tả hành động chuẩn bị đã xong xuôi.",
+        vocabulary: [
+          { term: "scarf", type: "noun", explanation: "khăn quàng cổ" },
+          { term: "gloves", type: "noun", explanation: "găng tay (số nhiều)" }
+        ],
+        nativeTip: "Nói 'I have my gloves on' nghĩa là tay đã đang đeo găng tay rồi."
+      }
+    ]
+  },
+
+  // --- Unit 4 - Part 2: Wear vs Carry & Accessories (10 turns) ---
+  {
+    id: "evu-elem-u4-p2",
+    title: "Unit 4 (Part 2): Mặc đồ vs Mang đồ",
+    topic: "Shopping",
+    difficulty: "easy",
+    tags: ["Vocabulary in Use (Elementary)", "Unit 4: Clothes", "A1"],
+    turns: [
+      { speaker: "ai", text: "I saw Naomi earlier. She was wearing a long blue coat. Was she carrying a bag?" },
+      {
+        speaker: "user",
+        promptVietnamese: "Cô ấy đang xách một chiếc va ly và một chiếc túi xách tay.",
+        english: "She was carrying a suitcase and a handbag.",
+        alternativeAnswers: ["She was holding a suitcase and carrying a handbag", "She carried a suitcase and a handbag"],
+        meaning: "Cô ấy đang mang/xách một cái vali và túi xách.",
+        grammarNotes: "Phân biệt: Mặc đồ trên người dùng 'wear', cầm/xách đồ vật di chuyển dùng 'carry'.",
+        vocabulary: [
+          { term: "carry", type: "verb", explanation: "mang, xách, vác" },
+          { term: "handbag", type: "noun", explanation: "túi xách tay nữ" }
+        ],
+        nativeTip: "Đừng nói 'she is wearing a bag'. Hãy nói 'she is carrying/holding a bag'."
+      },
+      { speaker: "ai", text: "Ah, she must be travelling. Was she wearing her glasses too?" },
+      {
+        speaker: "user",
+        promptVietnamese: "Không, cô ấy đang đeo kính râm và một chiếc nhẫn vàng.",
+        english: "No, she was wearing sunglasses and a gold ring.",
+        alternativeAnswers: ["No, she had sunglasses and a gold ring on", "No, she was wearing sunglasses and a ring made of gold"],
+        meaning: "Không, cô ấy đeo kính râm và nhẫn vàng.",
+        grammarNotes: "Cụm kính mắt 'glasses' hoặc 'sunglasses' đi kèm động từ 'wear' hoặc cụm 'have on'.",
+        vocabulary: [
+          { term: "sunglasses", type: "noun", explanation: "kính râm, kính mát" },
+          { term: "gold ring", type: "noun", explanation: "nhẫn vàng" }
+        ],
+        nativeTip: "Để nói đeo kính râm, người bản xứ dùng: 'She has sunglasses on'."
+      },
+      { speaker: "ai", text: "She always looks so elegant. Did she have a watch on?" },
+      {
+        speaker: "user",
+        promptVietnamese: "Có, cô ấy đang đeo một chiếc đồng hồ màu hồng xinh xắn.",
+        english: "Yes, she was wearing a cute pink watch.",
+        alternativeAnswers: ["Yes, she had a cute pink watch on", "Yes, she wore a lovely pink watch"],
+        meaning: "Đúng vậy, cô ấy đeo một cái đồng hồ màu hồng dễ thương.",
+        grammarNotes: "Đặt tính từ chỉ kích thước/cảm nhận 'cute' trước tính từ chỉ màu sắc 'pink'.",
+        vocabulary: [{ term: "watch", type: "noun", explanation: "đồng hồ đeo tay" }],
+        nativeTip: "Trong công sở hay đời sống, dùng 'have a watch on' tự nhiên ngang 'wear a watch'."
+      },
+      { speaker: "ai", text: "Nice! And was she carrying an umbrella? It looks like rain." },
+      {
+        speaker: "user",
+        promptVietnamese: "Có, cô ấy đang cầm một chiếc ô màu đen trong tay.",
+        english: "Yes, she was carrying a black umbrella in her hand.",
+        alternativeAnswers: ["Yes, she held a black umbrella", "Yes, she was carrying a black umbrella"],
+        meaning: "Có, cô ấy xách/cầm cái ô đen trên tay.",
+        grammarNotes: "Sử dụng mạo từ 'an' trước danh từ bắt đầu bằng nguyên âm 'umbrella'.",
+        vocabulary: [{ term: "umbrella", type: "noun", explanation: "cây dù, cái ô" }],
+        nativeTip: "Dùng động từ 'carry' cho ô dù, túi xách, hành lý."
+      },
+      { speaker: "ai", text: "Good. What about you? Are you wearing a belt with your jeans?" },
+      {
+        speaker: "user",
+        promptVietnamese: "Có, tôi đang đeo một chiếc thắt lưng da màu nâu.",
+        english: "Yes, I am wearing a brown leather belt.",
+        alternativeAnswers: ["Yes, I have a brown leather belt on", "Yes, with a brown leather belt"],
+        meaning: "Có, tôi đang đeo một chiếc thắt lưng da màu nâu.",
+        grammarNotes: "Sắp xếp tính từ: Màu sắc (brown) + Chất liệu (leather) + Danh từ (belt).",
+        vocabulary: [{ term: "belt", type: "noun", explanation: "thắt lưng, dây nịt" }],
+        nativeTip: "Dùng từ 'leather' để chỉ chất liệu da thuộc cao cấp."
+      }
+    ]
+  },
+
+  // --- Unit 4 - Part 3: Getting Undressed & Shopping (10 turns) ---
+  {
+    id: "evu-elem-u4-p3",
+    title: "Unit 4 (Part 3): Thử đồ & Cởi đồ",
+    topic: "Shopping",
+    difficulty: "easy",
+    tags: ["Vocabulary in Use (Elementary)", "Unit 4: Clothes", "A1"],
+    turns: [
+      { speaker: "ai", text: "Let's go shopping! I want to buy a new dress. Where can I try this on?" },
+      {
+        speaker: "user",
+        promptVietnamese: "Bạn có thể mặc thử nó ở trong phòng thay đồ đằng kia.",
+        english: "You can try it on in the changing room over there.",
+        alternativeAnswers: ["You can try it in the fitting room over there", "The fitting room is over there to try it on"],
+        meaning: "Bạn thử đồ ở phòng thay đồ đằng kia kìa.",
+        grammarNotes: "Khi dùng đại từ 'it/them' với phrasal verb 'try on', đại từ bắt buộc đứng giữa: 'try it on'.",
+        vocabulary: [
+          { term: "try it on", type: "phrase", explanation: "mặc thử nó lên người" },
+          { term: "changing room", type: "noun", explanation: "phòng thay đồ" }
+        ],
+        nativeTip: "Cụm 'over there' dùng để chỉ vị trí hơi xa tầm tay một chút rất trực quan."
+      },
+      { speaker: "ai", text: "Thanks! (After trying it) It fits perfectly. When we get home, what do you do first?" },
+      {
+        speaker: "user",
+        promptVietnamese: "Vào buổi tối, tôi thường cởi quần áo và đi tắm.",
+        english: "At night, I usually get undressed and take a shower.",
+        alternativeAnswers: ["In the evening, I usually take my clothes off and shower", "At night, I get undressed and have a bath"],
+        meaning: "Buổi tối tôi thường cởi đồ và đi tắm.",
+        grammarNotes: "Trạng từ chỉ tần suất 'usually' đứng trước động từ thường 'get undressed'.",
+        vocabulary: [
+          { term: "get undressed", type: "verb phrase", explanation: "cởi quần áo ra" },
+          { term: "take a shower", type: "verb phrase", explanation: "tắm vòi hoa sen" }
+        ],
+        nativeTip: "Phân biệt 'get dressed' (mặc đồ vào) và 'get undressed' (cởi hết đồ ra)."
+      },
+      { speaker: "ai", text: "That is relaxing. Do you take your shoes off inside the house?" },
+      {
+        speaker: "user",
+        promptVietnamese: "Có, tôi luôn cởi giày ra trước khi bước vào phòng khách.",
+        english: "Yes, I always take my shoes off before entering the living room.",
+        alternativeAnswers: ["Yes, I always take off my shoes before I enter the living room", "Yes, I take my shoes off at the entrance"],
+        meaning: "Có, tôi luôn cởi giày trước khi vào phòng khách.",
+        grammarNotes: "Cụm động từ 'take off' có thể tách rời: 'take shoes off' hoặc 'take off shoes'.",
+        vocabulary: [{ term: "take off", type: "phrasal verb", explanation: "cởi ra (quần áo, giày dép)" }],
+        nativeTip: "Tránh nhầm lẫn: Cởi đồ dùng 'take off', cấm dùng 'put off' (trực quan nhưng sai ngữ pháp)."
+      },
+      { speaker: "ai", text: "Good habit. What do you wear to sleep? Pyjamas?" },
+      {
+        speaker: "user",
+        promptVietnamese: "Đúng vậy, tôi mặc đồ ngủ vì chúng rất thoải mái.",
+        english: "Yes, I wear pyjamas because they are very comfortable.",
+        alternativeAnswers: ["Yes, I put on pyjamas because they are comfortable", "Right, I wear pyjamas. They're comfy"],
+        meaning: "Đúng thế, tôi mặc đồ ngủ vì chúng thoải mái.",
+        grammarNotes: "Từ 'pyjamas' luôn ở số nhiều nên dùng đại từ thay thế là 'they'.",
+        vocabulary: [
+          { term: "pyjamas", type: "noun", explanation: "quần áo ngủ, đồ pijama" },
+          { term: "comfortable", type: "adjective", explanation: "thoải mái, dễ chịu" }
+        ],
+        nativeTip: "Người bản xứ hay nói tắt thoải mái là 'comfy' trong giao tiếp hàng ngày."
+      },
+      { speaker: "ai", text: "Sleep well! Let's get dressed again tomorrow morning." },
+      {
+        speaker: "user",
+        promptVietnamese: "Chúc ngủ ngon! Ngày mai tôi sẽ mặc chiếc áo thun yêu thích.",
+        english: "Good night! Tomorrow I will wear my favorite T-shirt.",
+        alternativeAnswers: ["Good night! I'll put on my favorite T-shirt tomorrow", "Good night! Tomorrow I'll wear my favorite tee"],
+        meaning: "Chúc ngủ ngon! Ngày mai tôi sẽ mặc chiếc áo thun thích nhất.",
+        grammarNotes: "Thì Tương lai đơn 'I will wear' chỉ dự định phát biểu lúc nói.",
+        vocabulary: [{ term: "T-shirt", type: "noun", explanation: "áo thun, áo phông ngắn tay" }],
+        nativeTip: "Từ 'tee' là cách gọi tắt cực kỳ sành điệu của giới trẻ cho 'T-shirt'."
+      }
+    ]
+  },
+
+  // ==========================================
+  // Unit 7: Feelings (30 turns total)
+  // ==========================================
+  
+  // --- Unit 7 - Part 1: Likes, Loves & Hates (10 turns) ---
+  {
+    id: "evu-elem-u7-p1",
+    title: "Unit 7 (Part 1): Yêu, thích & Ghét",
+    topic: "Feelings",
+    difficulty: "easy",
+    tags: ["Vocabulary in Use (Elementary)", "Unit 7: Feelings", "A1"],
+    turns: [
+      { speaker: "ai", text: "What kind of things do you love and hate in life?" },
+      {
+        speaker: "user",
+        promptVietnamese: "Tôi yêu gia đình tôi và tôi ghét những con nhện.",
+        english: "I love my family and I hate spiders.",
+        alternativeAnswers: ["I love my family and hate spiders", "I love my family, but I hate spiders"],
+        meaning: "Tôi yêu gia đình mình và ghét loài nhện.",
+        grammarNotes: "Động từ 'love' (yêu - mức độ cực thích) và 'hate' (ghét cay ghét đắng).",
+        vocabulary: [
+          { term: "love", type: "verb", explanation: "yêu thương, cực kỳ thích" },
+          { term: "hate", type: "verb", explanation: "ghét, căm ghét" }
+        ],
+        nativeTip: "Spiders ở số nhiều chỉ loài nhện nói chung."
+      },
+      { speaker: "ai", text: "A lot of people hate spiders! Do you like horror films?" },
+      {
+        speaker: "user",
+        promptVietnamese: "Không, tôi không thích phim kinh dị chút nào.",
+        english: "No, I don't like horror films at all.",
+        alternativeAnswers: ["No, I don't like horror movies", "No, I hate horror films"],
+        meaning: "Không, tôi chẳng thích phim kinh dị tí nào.",
+        grammarNotes: "Dùng cụm 'not... at all' cuối câu phủ định để nhấn mạnh 'không chút nào'.",
+        vocabulary: [{ term: "horror films", type: "noun", explanation: "phim kinh dị" }],
+        nativeTip: "Dùng 'movies' thay cho 'films' phổ biến hơn trong tiếng Anh-Mỹ."
+      },
+      { speaker: "ai", text: "Me neither, they are too scary. Do you like your job, Nam?" },
+      {
+        speaker: "user",
+        promptVietnamese: "Có, tôi thực sự thích công việc của mình.",
+        english: "Yes, I really like my job.",
+        alternativeAnswers: ["Yes, I like my job very much", "Yes, I love my job"],
+        meaning: "Có, tôi thực sự thích công việc hiện tại.",
+        grammarNotes: "Phó từ 'really' bổ nghĩa cho động từ 'like' để tăng mức độ cảm xúc.",
+        vocabulary: [{ term: "really", type: "adverb", explanation: "thực sự, thật sự" }],
+        nativeTip: "Lỗi người Việt hay nói 'I very like my job'. Nhớ kỹ: tiếng Anh dùng 'I really like...' hoặc 'I like... very much'."
+      },
+      { speaker: "ai", text: "That is great! What about drinks? Do you prefer coffee or tea?" },
+      {
+        speaker: "user",
+        promptVietnamese: "Tôi thích cà phê hơn trà.",
+        english: "I prefer coffee to tea.",
+        alternativeAnswers: ["I prefer coffee over tea", "I like coffee more than tea"],
+        meaning: "Tôi thích uống cà phê hơn trà.",
+        grammarNotes: "Cấu trúc so sánh lựa chọn: 'prefer A to B' (thích A hơn B).",
+        vocabulary: [{ term: "prefer", type: "verb", explanation: "thích cái gì hơn cái gì" }],
+        nativeTip: "Luôn dùng giới từ 'to' sau prefer khi so sánh hai danh từ."
+      },
+      { speaker: "ai", text: "Same here. A fresh coffee in the morning makes my day!" },
+      {
+        speaker: "user",
+        promptVietnamese: "Đúng vậy, tôi rất thích bóng đá nữa.",
+        english: "Yes, and I really like football too.",
+        alternativeAnswers: ["Yes, and I like football very much", "Yes, I'm also a big fan of football"],
+        meaning: "Đúng vậy, tôi cũng rất thích bóng đá.",
+        grammarNotes: "Từ 'football' (tiếng Anh Anh) tương đương 'soccer' (tiếng Anh Mỹ).",
+        vocabulary: [{ term: "football", type: "noun", explanation: "môn bóng đá" }],
+        nativeTip: "Cụm 'I'm a big fan of...' tự nhiên và sành điệu hơn cấu trúc 'I like...' thông thường."
+      }
+    ]
+  },
+
+  // --- Unit 7 - Part 2: Emotional States (10 turns) ---
+  {
+    id: "evu-elem-u7-p2",
+    title: "Unit 7 (Part 2): Trạng thái cảm xúc",
+    topic: "Feelings",
+    difficulty: "easy",
+    tags: ["Vocabulary in Use (Elementary)", "Unit 7: Feelings", "A1"],
+    turns: [
+      { speaker: "ai", text: "How is your grandfather doing? I heard he was sick." },
+      {
+        speaker: "user",
+        promptVietnamese: "Ông ấy rất khỏe rồi, cảm ơn bạn.",
+        english: "He's very well, thanks.",
+        alternativeAnswers: ["He is doing great, thank you", "He is very well, thank you"],
+        meaning: "Ông ấy khoẻ lắm rồi, cảm ơn nhé.",
+        grammarNotes: "Cấu trúc trả lời sức khoẻ thông dụng: 'Subject + to be + well'.",
+        vocabulary: [{ term: "well", type: "adjective", explanation: "khỏe mạnh, tốt" }],
+        nativeTip: "Hỏi thăm người già hãy dùng từ 'well' thay vì chỉ dùng 'good'."
+      },
+      { speaker: "ai", text: "Glad to hear that. And how about your grandmother?" },
+      {
+        speaker: "user",
+        promptVietnamese: "Bà ấy hơi mệt một chút.",
+        english: "She's a bit tired.",
+        alternativeAnswers: ["She is a little tired", "She's slightly tired"],
+        meaning: "Bà ấy hơi mệt mỏi chút xíu.",
+        grammarNotes: "Cụm định lượng mức độ 'a bit' hoặc 'a little' đứng trước tính từ 'tired'.",
+        vocabulary: [
+          { term: "a bit", type: "adverb", explanation: "một chút, hơi hơi" },
+          { term: "tired", type: "adjective", explanation: "mệt mỏi" }
+        ],
+        nativeTip: "Dùng 'a bit' giúp giảm nhẹ sắc thái tiêu cực của tính từ đứng sau."
+      },
+      { speaker: "ai", text: "Oh, she should rest. I am very happy about your news!" },
+      {
+        speaker: "user",
+        promptVietnamese: "Cảm ơn bạn. Tôi cũng rất vui mừng vì bạn.",
+        english: "Thank you. I am very happy for you too.",
+        alternativeAnswers: ["Thanks. I'm so happy for you too", "Thank you, I feel happy for you too"],
+        meaning: "Cảm ơn bạn, tôi cũng rất mừng cho bạn.",
+        grammarNotes: "Phân biệt: 'happy about' (vui vì chuyện gì của mình/chung) và 'happy for someone' (vui mừng cho ai đó).",
+        vocabulary: [{ term: "happy for", type: "phrase", explanation: "vui mừng thay cho ai" }],
+        nativeTip: "Lỗi phổ biến của người Việt là nói 'I'm happy for your news'. Hãy nói 'I'm happy about your news'!"
+      },
+      { speaker: "ai", text: "Thanks. You look a bit angry or upset today. Is everything okay?" },
+      {
+        speaker: "user",
+        promptVietnamese: "Tôi không giận dữ, tôi chỉ đang buồn bã một chút thôi.",
+        english: "I am not angry, I am just a little sad.",
+        alternativeAnswers: ["I'm not mad, I'm just a bit upset", "No, I'm not angry, just a little sad"],
+        meaning: "Tôi không giận, tôi chỉ hơi buồn chút thôi.",
+        grammarNotes: "Dùng từ hạn định 'just' để nhấn mạnh 'chỉ là...'.",
+        vocabulary: [
+          { term: "angry", type: "adjective", explanation: "tức giận, giận dữ" },
+          { term: "sad", type: "adjective", explanation: "buồn bã" }
+        ],
+        nativeTip: "Người Mỹ rất hay dùng từ 'mad' thay cho 'angry' khi nói giận dữ."
+      },
+      { speaker: "ai", text: "Okay, I hope you feel better soon. Let's get something to eat." },
+      {
+        speaker: "user",
+        promptVietnamese: "Được rồi, tôi bắt đầu thấy đói bụng rồi.",
+        english: "Okay, I am starting to get hungry.",
+        alternativeAnswers: ["Alright, I'm getting hungry now", "Okay, I feel a bit hungry now"],
+        meaning: "Được rồi, tôi đang bắt đầu thấy đói bụng.",
+        grammarNotes: "Cấu trúc thay đổi trạng thái: 'get + adjective' (trở nên đói/mệt...).",
+        vocabulary: [{ term: "hungry", type: "adjective", explanation: "đói bụng" }],
+        nativeTip: "Dùng 'get hungry' biểu thị trạng thái bắt đầu đói bụng."
+      }
+    ]
+  },
+
+  // --- Unit 7 - Part 3: Physical Sensations & Wants (10 turns) ---
+  {
+    id: "evu-elem-u7-p3",
+    title: "Unit 7 (Part 3): Cảm giác cơ thể & Mong muốn",
+    topic: "Feelings",
+    difficulty: "easy",
+    tags: ["Vocabulary in Use (Elementary)", "Unit 7: Feelings", "A1"],
+    turns: [
+      { speaker: "ai", text: "Are you thirsty too? We can buy some water." },
+      {
+        speaker: "user",
+        promptVietnamese: "Có, tôi khát nước và tôi cũng thấy lạnh nữa.",
+        english: "Yes, I am thirsty and I feel cold too.",
+        alternativeAnswers: ["Yes, I'm thirsty and I also feel cold", "Yes, thirsty and a bit cold as well"],
+        meaning: "Có, tôi khát và cũng thấy lạnh nữa.",
+        grammarNotes: "Động từ liên kết 'feel' đi trực tiếp với tính từ 'cold'.",
+        vocabulary: [
+          { term: "thirsty", type: "adjective", explanation: "khát nước" },
+          { term: "cold", type: "adjective", explanation: "lạnh" }
+        ],
+        nativeTip: "Hỏi 'Are you thirsty?' tự nhiên hơn nhiều so với việc hỏi 'Do you want to drink?'."
+      },
+      { speaker: "ai", text: "Here is your jacket. I hope you do well in your exam tomorrow!" },
+      {
+        speaker: "user",
+        promptVisual: "Cảm ơn bạn. Tôi hy vọng rằng tôi sẽ làm bài tốt.",
+        promptVietnamese: "Cảm ơn bạn. Tôi hy vọng rằng tôi sẽ làm bài tốt.",
+        english: "Thank you. I hope that I will do well.",
+        alternativeAnswers: ["Thanks. I hope to do well", "Thank you, I hope I'll pass it well"],
+        meaning: "Cảm ơn bạn, tôi hy vọng mình sẽ làm tốt.",
+        grammarNotes: "Cấu trúc hy vọng: 'hope to + V' hoặc 'hope + clause'.",
+        vocabulary: [{ term: "hope", type: "verb", explanation: "hy vọng, mong ước" }],
+        nativeTip: "Cụm 'do well in the exam' nghĩa là làm bài thi tốt, đạt điểm cao."
+      },
+      { speaker: "ai", text: "You studied hard, so you will! By the way, what do you want to buy next?" },
+      {
+        speaker: "user",
+        promptVietnamese: "Tôi muốn mua một chiếc xe hơi mới.",
+        english: "I want to buy a new car.",
+        alternativeAnswers: ["I'd like to buy a new car", "I want a new car"],
+        meaning: "Tôi muốn mua một chiếc xe hơi mới.",
+        grammarNotes: "Động từ 'want' đi với to-infinitive khi nói về hành động mong muốn: 'want to do something'.",
+        vocabulary: [{ term: "want", type: "verb", explanation: "muốn, mong muốn" }],
+        nativeTip: "Sử dụng 'I would like to' lịch sự hơn hẳn 'I want to' khi giao tiếp với người ngoài."
+      },
+      { speaker: "ai", text: "A car is expensive! Who is going to pay for it?" },
+      {
+        speaker: "user",
+        promptVietnamese: "Tôi muốn bố mẹ tôi mua cho tôi chiếc xe đó.",
+        english: "I want my parents to buy that car for me.",
+        alternativeAnswers: ["I want my parents to buy me that car", "I hope my parents buy that car for me"],
+        meaning: "Tôi muốn bố mẹ mua chiếc xe đó cho tôi.",
+        grammarNotes: "Cấu trúc bắt buộc: 'want + someone + to do + something' (KHÔNG dùng want that you help).",
+        vocabulary: [{ term: "priority", type: "noun", explanation: "sự ưu tiên" }],
+        nativeTip: "Lỗi kinh điển của người Việt: 'I want that my parents buy'. Hãy luôn nói: 'I want my parents to buy'."
+      },
+      { speaker: "ai", text: "Good luck with that request! Let's get our food now." },
+      {
+        speaker: "user",
+        promptVietnamese: "Được rồi, chúng ta ăn thôi. Tôi đói lắm rồi.",
+        english: "Alright, let's eat. I am starving.",
+        alternativeAnswers: ["Okay, let's get some food. I'm very hungry", "Okay, let's eat. I am so hungry"],
+        meaning: "Được rồi, ăn thôi. Tôi đói lả người rồi.",
+        grammarNotes: "Từ 'starving' mang nghĩa đói lả, đói cực độ (mức độ mạnh hơn hungry).",
+        vocabulary: [{ term: "starving", type: "adjective", explanation: "đói lả, đói chết khiếp" }],
+        nativeTip: "Nói 'I'm starving' khi bạn cực kỳ đói bụng là cách nói tự nhiên cực kỳ phổ biến."
       }
     ]
   }
